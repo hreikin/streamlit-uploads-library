@@ -3,7 +3,8 @@ from streamlit_simple_gallery import ImageGallery
 
 # Configure page title, layout, menu items and links.
 st.set_page_config(
-    page_title="Streamlit Simple Gallery",
+    page_title="Streamlit Gallery",
+    initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
         "Get Help": "https://github.com/hreikin/streamlit-simple-gallery",
@@ -58,26 +59,22 @@ class ImageGallery():
                     self.filename_idx += 1
         return self.source_image_dropdown
 """
-example_usage = """
-Using the gallery is simple, import `streamlit_simple_gallery` and then instantiate the class with the 
-required `directory` variable. Other options can be configured by passing in different variables 
-when instantiating the class.
-"""
-example_usage_code = """
-import streamlit as st
-from streamlit_simple_gallery import ImageGallery
-
-st.set_page_config(page_title="Streamlit Gallery", layout="wide")
-gallery = ImageGallery(directory="assets")
+cache_usage = """
+Streamlit Simple Gallery makes use of the `st.cache_resource` decorator so the galleries on this 
+page will load from the cache instead of reloading the images each time the app is run. You will 
+probably want to clear your cache after uploading new files to your app, to do this you can use the 
+`st.cache_resource.clear()` function provided by Streamlit.
 """
 
 with st.sidebar:
     st.info("Welcome to the `streamlit-simple-gallery` example app.")
 
 st.header("Caching")
-st.markdown(example_usage)
-st.code(body=example_usage_code, language="python")
-gallery = ImageGallery(directory="assets", expanded=True, label="**Example Image Gallery**")
+st.markdown(body=cache_usage)
+default_gallery = ImageGallery(directory="assets")
+gallery_with_columns = ImageGallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
+expander_gallery = ImageGallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
+multiple_options_gallery = ImageGallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
 
 with st.expander(label="**Source Code**", expanded=True):
-    st.code(body=source_code, language="python")
+    st.code(body=source_code)

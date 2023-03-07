@@ -1,9 +1,11 @@
+from numpy import exp
 import streamlit as st
 from streamlit_simple_gallery import ImageGallery
 
 # Configure page title, layout, menu items and links.
 st.set_page_config(
-    page_title="Streamlit Simple Gallery",
+    page_title="Streamlit Gallery",
+    initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
         "Get Help": "https://github.com/hreikin/streamlit-simple-gallery",
@@ -68,16 +70,32 @@ import streamlit as st
 from streamlit_simple_gallery import ImageGallery
 
 st.set_page_config(page_title="Streamlit Gallery", layout="wide")
-gallery = ImageGallery(directory="assets")
+default_gallery = ImageGallery(directory="assets")
+gallery_with_columns = ImageGallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
+expander_gallery = ImageGallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
+multiple_options_gallery = ImageGallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
+"""
+configuration = """
+- `directory` (required): A `str()` of the path to the folder containing the gallery images, for example `"assets"`.
+- `expanded` (optional): A `bool()`, passing `False` starts the expander type gallery closed, default is open and `True`.
+- `file_extensions` (optional): A `tuple()` containing strings of the file extensions to include in the gallery, default is `(".png", ".jpg", ".jpeg")`.
+- `gallery_type` (optional): A `str()` with either "container" or "expander" used as the keyword, default is `"container"`.
+- `label` (optional): A `str()` containing the name of the gallery, passing `None` disables the label. Default value is `"Gallery"`.
+- `number_of_columns` (optional): An `int()` defining the number of required columns, default is `5`.
+- `show_filenames` (optional): A `bool()`, passing `True` displays the filenames, default is `False` which hides them.
 """
 
 with st.sidebar:
     st.info("Welcome to the `streamlit-simple-gallery` example app.")
 
 st.header("Streamlit Simple Gallery")
-st.markdown(example_usage)
-st.code(body=example_usage_code, language="python")
-gallery = ImageGallery(directory="assets", expanded=True, label="**Example Image Gallery**")
+st.markdown(body=example_usage)
+st.markdown(body=configuration)
+st.code(body=example_usage_code)
+default_gallery = ImageGallery(directory="assets")
+gallery_with_columns = ImageGallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
+expander_gallery = ImageGallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
+multiple_options_gallery = ImageGallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
 
 with st.expander(label="**Source Code**", expanded=True):
-    st.code(body=source_code, language="python")
+    st.code(body=source_code)
