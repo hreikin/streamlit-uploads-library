@@ -1,4 +1,3 @@
-from numpy import exp
 import streamlit as st
 from streamlit_simple_gallery import ImageGallery
 
@@ -76,6 +75,13 @@ class ImageGallery():
                     self.filename_idx += 1
         return self.container_or_expander
 """
+install_instructions = """
+A simple gallery for use in Streamlit projects. Installation is available via pip:
+
+```
+pip install streamlit-simple-gallery
+```
+"""
 example_usage = """
 Using the gallery is simple, import `streamlit_simple_gallery` and then instantiate the class with the 
 required `directory` variable. Other options can be configured by passing in different variables 
@@ -105,6 +111,7 @@ with st.sidebar:
     st.info("Welcome to the `streamlit-simple-gallery` example app.")
 
 st.header("Streamlit Simple Gallery")
+st.markdown(body=install_instructions)
 st.markdown(body=example_usage)
 st.markdown(body=configuration)
 st.code(body=example_usage_code)
