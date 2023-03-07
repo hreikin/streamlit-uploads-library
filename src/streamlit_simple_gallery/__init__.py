@@ -3,7 +3,7 @@ from pathlib import Path
 
 @st.cache_resource(show_spinner="Refreshing gallery...")
 class ImageGallery():
-    def __init__(self, directory, expanded=True, file_extensions=(".png", ".jpg", ".jpeg"), gallery_type="container", label="**Gallery**", number_of_columns=5, show_filename=True):
+    def __init__(self, directory, expanded=True, file_extensions=(".png", ".jpg", ".jpeg"), gallery_type="container", label="**Gallery**" or None, number_of_columns=5, show_filename=False):
         self.directory = Path(directory).resolve()
         self.expanded = expanded
         self.file_extensions = file_extensions
@@ -24,11 +24,18 @@ class ImageGallery():
 
     def create_gallery(self):
         if self.gallery_type == "expander":
-            self.container_or_expander = st.expander(label=self.label, expanded=self.expanded)
+            if self.label == None:
+                self.label = ""
+                self.container_or_expander = st.expander(label=self.label, expanded=self.expanded)
+            else:
+                self.container_or_expander = st.expander(label=self.label, expanded=self.expanded)
         else:
             self.container_or_expander = st.container()
             with self.container_or_expander:
-                self.gallery_label = st.markdown(f"**{self.label}**")
+                if self.label == None:
+                    pass
+                else:
+                    self.gallery_label = st.markdown(f"**{self.label}**")
         with self.container_or_expander:
             self.col_idx = 0
             self.filename_idx = 0
