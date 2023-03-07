@@ -4,7 +4,7 @@ A simple gallery for use in Streamlit projects.
 
 ## Installation
 
-Installation is via pip:
+Installation is available via pip:
 
 ```
 pip install streamlit-simple-gallery
