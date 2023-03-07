@@ -3,13 +3,14 @@ from pathlib import Path
 
 @st.cache_resource(show_spinner="Refreshing gallery...")
 class ImageGallery():
-    def __init__(self, directory, expanded=True, file_extensions=(".png", ".jpg", ".jpeg"), gallery_type="container", label="**Gallery**", number_of_columns=5):
+    def __init__(self, directory, expanded=True, file_extensions=(".png", ".jpg", ".jpeg"), gallery_type="container", label="**Gallery**", number_of_columns=5, show_filename=True):
         self.directory = Path(directory).resolve()
         self.expanded = expanded
         self.file_extensions = file_extensions
         self.gallery_type = gallery_type
         self.label = label
         self.number_of_columns = number_of_columns
+        self.show_filename = show_filename
         self.gallery = self.create_gallery()
 
     def fetch_files(self):
@@ -36,7 +37,10 @@ class ImageGallery():
             self.all_columns = list(st.columns(self.number_of_columns))
             for img in self.gallery_files:
                 with self.all_columns[self.col_idx]:
-                    st.image(img, caption=self.gallery_filenames[self.filename_idx], use_column_width=True)
+                    if self.show_filename == True:
+                        st.image(img, caption=self.gallery_filenames[self.filename_idx], use_column_width=True)
+                    else:
+                        st.image(img, use_column_width=True)
                     if self.col_idx < self.max_idx:
                         self.col_idx += 1
                     else:
