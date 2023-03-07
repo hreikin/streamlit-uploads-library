@@ -6,10 +6,10 @@ st.set_page_config(
     page_title="Streamlit Simple Gallery",
     layout="wide",
     menu_items={
-        "Get Help": "https://github.com/hreikin/streamlit-gallery",
-        "Report a bug": "https://github.com/hreikin/streamlit-gallery/issues",
+        "Get Help": "https://github.com/hreikin/streamlit-simple-gallery",
+        "Report a bug": "https://github.com/hreikin/streamlit-simple-gallery/issues",
         "About": """
-        Streamlit Gallery is created and maintained by [@hreikin](https://hreikin.co.uk). The source code is available on [GitHub](https://github.com/hreikin/streamlit-gallery), community contributions are always welcome.
+        Streamlit Gallery is created and maintained by [@hreikin](https://hreikin.co.uk). The source code is available on [GitHub](https://github.com/hreikin/streamlit-simple-gallery), community contributions are always welcome.
         
         MIT licensed: [MIT](https://opensource.org/license/mit/)
         """
@@ -59,7 +59,7 @@ class ImageGallery():
         return self.source_image_dropdown
 """
 example_usage = """
-Using the gallery is simple, import `streamlit-gallery` and then instantiate the class with the 
+Using the gallery is simple, import `streamlit_simple_gallery` and then instantiate the class with the 
 required `directory` variable. Other options can be configured by passing in different variables 
 when instantiating the class.
 """
@@ -74,7 +74,7 @@ gallery = ImageGallery(directory="assets")
 with st.sidebar:
     st.info("Welcome to the `streamlit-simple-gallery` example app.")
 
-st.header("Streamlit Simple Gallery")
+st.header("Caching")
 st.markdown(example_usage)
 st.code(body=example_usage_code, language="python")
 gallery = ImageGallery(directory="assets", expanded=True, label="**Example Image Gallery**")

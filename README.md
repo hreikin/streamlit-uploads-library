@@ -1,4 +1,4 @@
-# Streamlit Gallery
+# Streamlit Simple Gallery
 
 A simple gallery for use in Streamlit projects.
 
@@ -7,12 +7,12 @@ A simple gallery for use in Streamlit projects.
 Installation is via pip:
 
 ```
-pip install streamlit-gallery
+pip install streamlit-simple-gallery
 ```
 
 ## Usage
 
-Using the gallery is simple, import `streamlit-gallery` and then instantiate the class with the 
+Using the gallery is simple, import `streamlit_simple_gallery` and then instantiate the class with the 
 required `directory` variable. Other options can be configured by passing in different variables 
 when instantiating the class.
 
@@ -27,7 +27,7 @@ gallery = ImageGallery(directory="assets")
 To run the example application provided in the repository:
 
 ```bash
-git clone https://github.com/hreikin/streamlit-gallery
+git clone https://github.com/hreikin/streamlit-simple-gallery
 cd streamlit-gallery/example/
 python -m venv .venv
 source .venv/bin/activate
