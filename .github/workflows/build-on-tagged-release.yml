@@ -1,0 +1,55 @@
+# This workflow will upload a Python package using Twine to PyPi when a tag is
+# created and pushed. It will also create a tagged release on Github. To use
+# this workflow create a PYPI_TOKEN and GH_WORKFLOW_TOKEN in your Github
+# repository settings.
+#
+# For more information visit the followng links:
+#
+# - https://pypi.org/help/#apitoken
+# - https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+# - https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+#
+# This workflow uses actions that are not certified by GitHub. They are
+# provided by a third-party and are governed by separate terms of service,
+# privacy policy, and support documentation.
+
+name: Build & Upload Python Package To PyPi On Tagged Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository Source
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
+      - name: Install Build Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install build twine
+      - name: Build Package
+        run: python -m build
+      - name: Publish Package To PyPi
+        uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_TOKEN }}
+      - name: Create Release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GH_WORKFLOW_TOKEN }}"
+          prerelease: True
+          files: |
+            README.md
+            LICENSE
+            dist/*.tar.gz
+            dist/*.whl
