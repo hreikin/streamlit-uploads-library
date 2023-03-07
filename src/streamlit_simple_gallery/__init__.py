@@ -24,12 +24,12 @@ class ImageGallery():
 
     def create_gallery(self):
         if self.gallery_type == "expander":
-            self.source_image_dropdown_container = st.expander(label=self.label, expanded=self.expanded)
+            self.container_or_expander = st.expander(label=self.label, expanded=self.expanded)
         else:
-            self.source_image_dropdown_container = st.container()
-            with self.source_image_dropdown_container:
+            self.container_or_expander = st.container()
+            with self.container_or_expander:
                 self.gallery_label = st.markdown(f"**{self.label}**")
-        with self.source_image_dropdown_container:
+        with self.container_or_expander:
             self.col_idx = 0
             self.filename_idx = 0
             self.max_idx = self.number_of_columns-1
@@ -46,4 +46,4 @@ class ImageGallery():
                     else:
                         self.col_idx = 0
                     self.filename_idx += 1
-        return self.source_image_dropdown_container
+        return self.container_or_expander
