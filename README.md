@@ -20,7 +20,7 @@ when instantiating the class.
 import streamlit as st
 from streamlit_gallery import ImageGallery
 
-st.set_page_config(page_title="Streamlit Gallery", layout="wide")
+st.set_page_config(page_title="Streamlit Simple Gallery", layout="wide")
 gallery = ImageGallery(directory="assets")
 ```
 
