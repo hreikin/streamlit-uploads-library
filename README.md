@@ -18,7 +18,7 @@ when instantiating the class.
 
 ```python
 import streamlit as st
-from streamlit_gallery import ImageGallery
+from streamlit_simple_gallery import ImageGallery
 
 st.set_page_config(page_title="Streamlit Simple Gallery", layout="wide")
 gallery = ImageGallery(directory="assets")
@@ -28,7 +28,7 @@ To run the example application provided in the repository:
 
 ```bash
 git clone https://github.com/hreikin/streamlit-simple-gallery
-cd streamlit-gallery/example/
+cd streamlit-simple-gallery/example/
 python -m venv .venv
 source .venv/bin/activate
 pip install streamlit-simple-gallery
