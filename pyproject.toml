@@ -9,6 +9,7 @@ authors = [
   { name="Michael Haslam", email="hreikin@gmail.com" },
 ]
 description = "Simple gallery for use in Streamlit projects."
+dependencies = ["streamlit >= 1.19.0"]
 readme = {file = "README.md", content-type = "text/markdown"}
 license = {file = "LICENSE"}
 requires-python = ">=3.7"
@@ -22,5 +23,3 @@ classifiers = [
 "Homepage" = "https://github.com/hreikin/streamlit-simple-gallery"
 "Bug Tracker" = "https://github.com/hreikin/streamlit-simple-gallery/issues"
 
-[options]
-install_requires = streamlit >= 1.19.0
