@@ -31,6 +31,6 @@ git clone https://github.com/hreikin/streamlit-simple-gallery
 cd streamlit-gallery/example/
 python -m venv .venv
 source .venv/bin/activate
-pip install streamlit-gallery
+pip install streamlit-simple-gallery
 streamlit run Home.py
 ```
