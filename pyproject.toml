@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "streamlit_simple_gallery"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Michael Haslam", email="hreikin@gmail.com" },
 ]
