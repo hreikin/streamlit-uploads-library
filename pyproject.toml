@@ -17,6 +17,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+  "streamlit"
+]
 
 [project.urls]
 "Homepage" = "https://github.com/hreikin/streamlit-simple-gallery"
