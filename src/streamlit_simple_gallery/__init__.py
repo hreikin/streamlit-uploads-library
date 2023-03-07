@@ -34,8 +34,6 @@ class ImageGallery():
             self.max_idx = self.number_of_columns-1
             self.gallery_files, self.gallery_filenames = self.fetch_files()
             self.all_columns = list(st.columns(self.number_of_columns))
-            for item in self.all_columns:
-                print(item)
             for img in self.gallery_files:
                 with self.all_columns[self.col_idx]:
                     st.image(img, caption=self.gallery_filenames[self.filename_idx], use_column_width=True)
