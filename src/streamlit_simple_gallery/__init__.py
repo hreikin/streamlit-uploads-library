@@ -3,10 +3,11 @@ from pathlib import Path
 
 @st.cache_resource(show_spinner="Refreshing gallery...")
 class ImageGallery():
-    def __init__(self, directory, expanded=True, file_extensions=(".png", ".jpg", ".jpeg"), label="**Images**"):
+    def __init__(self, directory, expanded=True, file_extensions=(".png", ".jpg", ".jpeg"), gallery_type="container", label="**Gallery**"):
         self.directory = Path(directory).resolve()
         self.expanded = expanded
         self.file_extensions = file_extensions
+        self.gallery_type = gallery_type
         self.label = label
         self.gallery = self.create_gallery()
 
@@ -20,10 +21,13 @@ class ImageGallery():
         return self.all_files, self.all_filenames
 
     def create_gallery(self):
-        self.source_image_dropdown = st.expander(label=self.label, expanded=self.expanded)
-        with self.source_image_dropdown:
-            self.source_gallery = st.container()
-        with self.source_gallery:
+        if self.gallery_type == "expander":
+            self.source_image_dropdown_container = st.expander(label=self.label, expanded=self.expanded)
+        else:
+            self.source_image_dropdown_container = st.container()
+            with self.source_image_dropdown_container:
+                self.gallery_label = st.markdown(f"**{self.label}**")
+        with self.source_image_dropdown_container:
             self.col1, self.col2, self.col3, self.col4, self.col5 = st.columns(5)
             self.col_list = [self.col1, self.col2, self.col3, self.col4, self.col5]
             self.col_idx = 0
@@ -37,4 +41,4 @@ class ImageGallery():
                     else:
                         self.col_idx = 0
                     self.filename_idx += 1
-        return self.source_image_dropdown
+        return self.source_image_dropdown_container
