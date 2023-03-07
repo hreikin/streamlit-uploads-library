@@ -23,11 +23,14 @@ from pathlib import Path
 
 @st.cache_resource(show_spinner="Refreshing gallery...")
 class ImageGallery():
-    def __init__(self, directory, expanded=True, file_extensions=(".png", ".jpg", ".jpeg"), label="**Images**"):
+    def __init__(self, directory, expanded=True, file_extensions=(".png", ".jpg", ".jpeg"), gallery_type="container", label="**Gallery**" or None, number_of_columns=5, show_filename=False):
         self.directory = Path(directory).resolve()
         self.expanded = expanded
         self.file_extensions = file_extensions
+        self.gallery_type = gallery_type
         self.label = label
+        self.number_of_columns = number_of_columns
+        self.show_filename = show_filename
         self.gallery = self.create_gallery()
 
     def fetch_files(self):
@@ -40,24 +43,37 @@ class ImageGallery():
         return self.all_files, self.all_filenames
 
     def create_gallery(self):
-        self.source_image_dropdown = st.expander(label=self.label, expanded=self.expanded)
-        with self.source_image_dropdown:
-            self.source_gallery = st.container()
-        with self.source_gallery:
-            self.col1, self.col2, self.col3, self.col4, self.col5 = st.columns(5)
-            self.col_list = [self.col1, self.col2, self.col3, self.col4, self.col5]
+        if self.gallery_type == "expander":
+            if self.label == None:
+                self.label = ""
+                self.container_or_expander = st.expander(label=self.label, expanded=self.expanded)
+            else:
+                self.container_or_expander = st.expander(label=self.label, expanded=self.expanded)
+        else:
+            self.container_or_expander = st.container()
+            with self.container_or_expander:
+                if self.label == None:
+                    pass
+                else:
+                    self.gallery_label = st.markdown(f"**{self.label}**")
+        with self.container_or_expander:
             self.col_idx = 0
             self.filename_idx = 0
+            self.max_idx = self.number_of_columns-1
             self.gallery_files, self.gallery_filenames = self.fetch_files()
+            self.all_columns = list(st.columns(self.number_of_columns))
             for img in self.gallery_files:
-                with self.col_list[self.col_idx]:
-                    st.image(img, caption=self.gallery_filenames[self.filename_idx], use_column_width=True)
-                    if self.col_idx < 4:
+                with self.all_columns[self.col_idx]:
+                    if self.show_filename == True:
+                        st.image(img, caption=self.gallery_filenames[self.filename_idx], use_column_width=True)
+                    else:
+                        st.image(img, use_column_width=True)
+                    if self.col_idx < self.max_idx:
                         self.col_idx += 1
                     else:
                         self.col_idx = 0
                     self.filename_idx += 1
-        return self.source_image_dropdown
+        return self.container_or_expander
 """
 cache_usage = """
 Streamlit Simple Gallery makes use of the `st.cache_resource` decorator so the galleries on this 
