@@ -1,17 +1,15 @@
 import streamlit as st
-from streamlit_gallery import ImageGallery
+from streamlit_simple_gallery import ImageGallery
 
 # Configure page title, layout, menu items and links.
 st.set_page_config(
-    page_title="Streamlit Gallery",
+    page_title="Streamlit Simple Gallery",
     layout="wide",
     menu_items={
         "Get Help": "https://github.com/hreikin/streamlit-gallery",
         "Report a bug": "https://github.com/hreikin/streamlit-gallery/issues",
         "About": """
-        Streamlit Gallery is created and maintained by [@hreikin](https://hreikin.co.uk). The 
-        source code is available on [GitHub](https://github.com/hreikin/streamlit-gallery), 
-        community contributions are always welcome.
+        Streamlit Gallery is created and maintained by [@hreikin](https://hreikin.co.uk). The source code is available on [GitHub](https://github.com/hreikin/streamlit-gallery), community contributions are always welcome.
         
         MIT licensed: [MIT](https://opensource.org/license/mit/)
         """
@@ -67,16 +65,16 @@ when instantiating the class.
 """
 example_usage_code = """
 import streamlit as st
-from streamlit_gallery import ImageGallery
+from streamlit_simple_gallery import ImageGallery
 
 st.set_page_config(page_title="Streamlit Gallery", layout="wide")
 gallery = ImageGallery(directory="assets")
 """
 
 with st.sidebar:
-    st.info("Welcome to the `streamlit-gallery` example app.")
+    st.info("Welcome to the `streamlit-simple-gallery` example app.")
 
-st.header("Streamlit Gallery")
+st.header("Streamlit Simple Gallery")
 st.markdown(example_usage)
 st.code(body=example_usage_code, language="python")
 gallery = ImageGallery(directory="assets", expanded=True, label="**Example Image Gallery**")
