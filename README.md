@@ -24,7 +24,7 @@ when instantiating the class.
 - `gallery_type` (optional): A `str()` with either "container" or "expander" used as the keyword, the default is `"`container"`.
 - `label` (optional): A `str()` containing the name of the gallery, passing `None` disables the label. The default value is `"Gallery"`.
 - `number_of_columns` (optional): An `int()` defining the number of required columns, default is `5`.
-- `show_filenames` (optional): A `bool()`, passing `True` displays the filenames, the default is `False`` which hides them.
+- `show_filenames` (optional): A `bool()`, passing `True` displays the filenames, the default is `False` which hides them.
 
 ```python
 import streamlit as st
