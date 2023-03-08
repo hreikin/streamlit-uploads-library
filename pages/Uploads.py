@@ -71,7 +71,7 @@ example_usage_code = """
 import streamlit as st
 from streamlit_uploads_library.uploads import UploadFiles
 
-st.set_page_config(page_title="Streamlit Uploads Library", layout="wide")
+st.set_page_config(page_title="Streamlit Uploads Library")
 default_uploader = UploadFiles(save_location="assets")
 """
 

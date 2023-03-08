@@ -91,7 +91,7 @@ example_usage_code = """
 import streamlit as st
 from streamlit_uploads_library.gallery import Gallery
 
-st.set_page_config(page_title="Streamlit Uploads Library", layout="wide")
+st.set_page_config(page_title="Streamlit Uploads Library")
 default_gallery = Gallery(directory="assets")
 gallery_with_columns = Gallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
 expander_gallery = Gallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
