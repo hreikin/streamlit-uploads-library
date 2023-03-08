@@ -91,7 +91,7 @@ configuration = """
 - `directory` (required): A `str()` of the path to the folder containing the gallery images, for example, `"assets"`.
 - `expanded` (optional): A `bool()`, passing `False` starts the expander type gallery closed, default is open and `True`.
 - `file_extensions` (optional): A `tuple()` containing strings of the file extensions to include in the gallery, default is `(".png", ".jpg", ".jpeg")`.
-- `gallery_type` (optional): A `str()` with either "container" or "expander" used as the keyword, the default is `"`container"`.
+- `gallery_type` (optional): A `str()` with either "container" or "expander" used as the keyword, the default is `"container"`.
 - `label` (optional): A `str()` containing the name of the gallery, passing `None` disables the label. The default value is `"Gallery"`.
 - `number_of_columns` (optional): An `int()` defining the number of required columns, default is `5`.
 - `show_filenames` (optional): A `bool()`, passing `True` displays the filenames, the default is `False` which hides them.
