@@ -30,7 +30,7 @@ when instantiating the class.
 import streamlit as st
 from streamlit_uploads_library import ImageGallery
 
-st.set_page_config(page_title="Streamlit Gallery", layout="wide")
+st.set_page_config(page_title="Streamlit Uploads Library", layout="wide")
 default_gallery = ImageGallery(directory="assets")
 gallery_with_columns = ImageGallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
 expander_gallery = ImageGallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
