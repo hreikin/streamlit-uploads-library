@@ -41,9 +41,9 @@ To run the example application provided in the repository:
 
 ```bash
 git clone https://github.com/hreikin/streamlit-uploads-library
-cd streamlit-uploads-library/example/
+cd streamlit-uploads-library/
 python -m venv .venv
 source .venv/bin/activate
-pip install streamlit-uploads-library
+pip install -r requirements.txt
 streamlit run Home.py
 ```
