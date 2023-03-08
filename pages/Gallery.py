@@ -4,7 +4,6 @@ from src.streamlit_uploads_library.gallery import Gallery
 # Configure page title, layout, menu items and links.
 st.set_page_config(
     page_title="Streamlit Uploads Library",
-    layout="wide",
     menu_items={
         "Get Help": "https://github.com/hreikin/streamlit-uploads-library",
         "Report a bug": "https://github.com/hreikin/streamlit-uploads-library/issues",
@@ -90,7 +89,7 @@ configuration = """
 """
 example_usage_code = """
 import streamlit as st
-from streamlit_uploads_library import Gallery
+from streamlit_uploads_library.gallery import Gallery
 
 st.set_page_config(page_title="Streamlit Uploads Library", layout="wide")
 default_gallery = Gallery(directory="assets")
