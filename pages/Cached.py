@@ -1,16 +1,16 @@
 import streamlit as st
-from src.streamlit_simple_gallery import ImageGallery
+from src.streamlit_uploads_library import ImageGallery
 
 # Configure page title, layout, menu items and links.
 st.set_page_config(
-    page_title="Streamlit Gallery",
+    page_title="Streamlit Uploads Library",
     initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
-        "Get Help": "https://github.com/hreikin/streamlit-simple-gallery",
-        "Report a bug": "https://github.com/hreikin/streamlit-simple-gallery/issues",
+        "Get Help": "https://github.com/hreikin/streamlit-uploads-library",
+        "Report a bug": "https://github.com/hreikin/streamlit-uploads-library/issues",
         "About": """
-        Streamlit Gallery is created and maintained by [@hreikin](https://hreikin.co.uk). The source code is available on [GitHub](https://github.com/hreikin/streamlit-simple-gallery), community contributions are always welcome.
+        Streamlit Uploads Library is created and maintained by [@hreikin](https://hreikin.co.uk). The source code is available on [GitHub](https://github.com/hreikin/streamlit-uploads-library), community contributions are always welcome.
         
         MIT licensed: [MIT](https://opensource.org/license/mit/)
         """
@@ -76,14 +76,14 @@ class ImageGallery():
         return self.container_or_expander
 """
 cache_usage = """
-Streamlit Simple Gallery makes use of the `st.cache_resource` decorator so the galleries on this 
+Streamlit Uploads Library makes use of the `st.cache_resource` decorator so the galleries on this 
 page will load from the cache instead of reloading the images each time the app is run. You will 
 probably want to clear your cache after uploading new files to your app, to do this you can use the 
 `st.cache_resource.clear()` function provided by Streamlit.
 """
 
 with st.sidebar:
-    st.info("Welcome to the `streamlit-simple-gallery` example app.")
+    st.info("Welcome to the `streamlit-uploads-library` example app.")
 
 st.header("Caching")
 st.markdown(body=cache_usage)

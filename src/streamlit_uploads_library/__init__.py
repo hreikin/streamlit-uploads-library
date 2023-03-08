@@ -5,14 +5,14 @@ from pathlib import Path
 class ImageGallery():
     """Create a simple gallery out of streamlit widgets.
 
-    Using the gallery is simple, import `streamlit_simple_gallery` and then instantiate the class with the 
+    Using the gallery is simple, import `streamlit_uploads_library` and then instantiate the class with the 
     required `directory` variable. Other options can be configured by passing in different variables 
     when instantiating the class.
 
     Example Usage:
         python
         import streamlit as st
-        from streamlit_simple_gallery import ImageGallery
+        from streamlit_uploads_library import ImageGallery
 
         st.set_page_config(page_title="Streamlit Gallery", layout="wide")
         default_gallery = ImageGallery(directory="assets")

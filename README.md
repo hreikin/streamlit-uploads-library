@@ -1,6 +1,6 @@
-# Streamlit Simple Gallery
+# Streamlit Uploads Library
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hreikin-streamlit-simple-gallery-home-s3igns.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hreikin-streamlit-uploads-library-home-s3igns.streamlit.app/)
 
 A simple gallery for use in Streamlit projects. Check out the demo using the Streamlit Cloud button above.
 
@@ -9,12 +9,12 @@ A simple gallery for use in Streamlit projects. Check out the demo using the Str
 Installation is available via pip:
 
 ```
-pip install streamlit-simple-gallery
+pip install streamlit-uploads-library
 ```
 
 ## Usage
 
-Using the gallery is simple, import `streamlit_simple_gallery` and then instantiate the class with the 
+Using the gallery is simple, import `streamlit_uploads_library` and then instantiate the class with the 
 required `directory` variable. Other options can be configured by passing in different variables 
 when instantiating the class.
 
@@ -28,7 +28,7 @@ when instantiating the class.
 
 ```python
 import streamlit as st
-from streamlit_simple_gallery import ImageGallery
+from streamlit_uploads_library import ImageGallery
 
 st.set_page_config(page_title="Streamlit Gallery", layout="wide")
 default_gallery = ImageGallery(directory="assets")
@@ -40,10 +40,10 @@ multiple_options_gallery = ImageGallery(directory="assets", gallery_type="expand
 To run the example application provided in the repository:
 
 ```bash
-git clone https://github.com/hreikin/streamlit-simple-gallery
-cd streamlit-simple-gallery/example/
+git clone https://github.com/hreikin/streamlit-uploads-library
+cd streamlit-uploads-library/example/
 python -m venv .venv
 source .venv/bin/activate
-pip install streamlit-simple-gallery
+pip install streamlit-uploads-library
 streamlit run Home.py
 ```

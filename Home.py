@@ -1,16 +1,16 @@
 import streamlit as st
-from src.streamlit_simple_gallery import ImageGallery
+from src.streamlit_uploads_library import ImageGallery
 
 # Configure page title, layout, menu items and links.
 st.set_page_config(
-    page_title="Streamlit Gallery",
+    page_title="Streamlit Uploads Library",
     initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
-        "Get Help": "https://github.com/hreikin/streamlit-simple-gallery",
-        "Report a bug": "https://github.com/hreikin/streamlit-simple-gallery/issues",
+        "Get Help": "https://github.com/hreikin/streamlit-uploads-library",
+        "Report a bug": "https://github.com/hreikin/streamlit-uploads-library/issues",
         "About": """
-        Streamlit Gallery is created and maintained by [@hreikin](https://hreikin.co.uk). The source code is available on [GitHub](https://github.com/hreikin/streamlit-simple-gallery), community contributions are always welcome.
+        Streamlit Uploads Library is created and maintained by [@hreikin](https://hreikin.co.uk). The source code is available on [GitHub](https://github.com/hreikin/streamlit-uploads-library), community contributions are always welcome.
         
         MIT licensed: [MIT](https://opensource.org/license/mit/)
         """
@@ -79,11 +79,11 @@ install_instructions = """
 A simple gallery for use in Streamlit projects. Installation is available via pip:
 
 ```
-pip install streamlit-simple-gallery
+pip install streamlit-uploads-library
 ```
 """
 example_usage = """
-Using the gallery is simple, import `streamlit_simple_gallery` and then instantiate the class with the 
+Using the gallery is simple, import `streamlit_uploads_library` and then instantiate the class with the 
 required `directory` variable. Other options can be configured by passing in different variables 
 when instantiating the class.
 """
@@ -98,9 +98,9 @@ configuration = """
 """
 example_usage_code = """
 import streamlit as st
-from streamlit_simple_gallery import ImageGallery
+from streamlit_uploads_library import ImageGallery
 
-st.set_page_config(page_title="Streamlit Gallery", layout="wide")
+st.set_page_config(page_title="Streamlit Uploads Library", layout="wide")
 default_gallery = ImageGallery(directory="assets")
 gallery_with_columns = ImageGallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
 expander_gallery = ImageGallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
@@ -108,9 +108,9 @@ multiple_options_gallery = ImageGallery(directory="assets", gallery_type="expand
 """
 
 with st.sidebar:
-    st.info("Welcome to the `streamlit-simple-gallery` example app.")
+    st.info("Welcome to the `streamlit-uploads-library` example app.")
 
-st.header("Streamlit Simple Gallery")
+st.header("Streamlit Uploads Library")
 st.markdown(body=install_instructions)
 st.markdown(body=example_usage)
 st.markdown(body=configuration)

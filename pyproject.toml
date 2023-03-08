@@ -3,12 +3,12 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "streamlit_simple_gallery"
-version = "0.0.4"
+name = "streamlit_uploads_library"
+version = "0.0.1"
 authors = [
   { name="Michael Haslam", email="hreikin@gmail.com" },
 ]
-description = "Simple gallery for use in Streamlit projects."
+description = "A wrapper around st.file_uploader that provides a library and gallery options."
 dependencies = ["streamlit >= 1.19.0"]
 readme = {file = "README.md", content-type = "text/markdown"}
 license = {file = "LICENSE"}
@@ -20,6 +20,6 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/hreikin/streamlit-simple-gallery"
-"Bug Tracker" = "https://github.com/hreikin/streamlit-simple-gallery/issues"
+"Homepage" = "https://github.com/hreikin/streamlit-uploads-library"
+"Bug Tracker" = "https://github.com/hreikin/streamlit-uploads-library/issues"
 
