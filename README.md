@@ -1,6 +1,6 @@
 # Streamlit Uploads Library
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hreikin-streamlit-uploads-library-home-s3igns.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hreikin-streamlit-uploads-library-home-ar6h9h.streamlit.app/)
 
 A simple gallery for use in Streamlit projects. Check out the demo using the Streamlit Cloud button above.
 
