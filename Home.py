@@ -1,5 +1,5 @@
 import streamlit as st
-from src.streamlit_uploads_library import ImageGallery
+from src.streamlit_uploads_library.gallery import Gallery
 
 # Configure page title, layout, menu items and links.
 st.set_page_config(
@@ -22,7 +22,7 @@ import streamlit as st
 from pathlib import Path
 
 @st.cache_resource(show_spinner="Refreshing gallery...")
-class ImageGallery():
+class Gallery():
     def __init__(self, directory, expanded=True, file_extensions=(".png", ".jpg", ".jpeg"), gallery_type="container", label="**Gallery**" or None, number_of_columns=5, show_filename=False):
         self.directory = Path(directory).resolve()
         self.expanded = expanded
@@ -98,13 +98,13 @@ configuration = """
 """
 example_usage_code = """
 import streamlit as st
-from streamlit_uploads_library import ImageGallery
+from streamlit_uploads_library import Gallery
 
 st.set_page_config(page_title="Streamlit Uploads Library", layout="wide")
-default_gallery = ImageGallery(directory="assets")
-gallery_with_columns = ImageGallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
-expander_gallery = ImageGallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
-multiple_options_gallery = ImageGallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
+default_gallery = Gallery(directory="assets")
+gallery_with_columns = Gallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
+expander_gallery = Gallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
+multiple_options_gallery = Gallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
 """
 
 with st.sidebar:
@@ -115,10 +115,10 @@ st.markdown(body=install_instructions)
 st.markdown(body=example_usage)
 st.markdown(body=configuration)
 st.code(body=example_usage_code)
-default_gallery = ImageGallery(directory="assets")
-gallery_with_columns = ImageGallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
-expander_gallery = ImageGallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
-multiple_options_gallery = ImageGallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
+default_gallery = Gallery(directory="assets")
+gallery_with_columns = Gallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
+expander_gallery = Gallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
+multiple_options_gallery = Gallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
 
 with st.expander(label="**Source Code**", expanded=True):
     st.code(body=source_code)

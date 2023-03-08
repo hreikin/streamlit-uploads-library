@@ -1,28 +1,34 @@
 import streamlit as st
-from src.streamlit_uploads_library.gallery import Gallery
-
-# Configure page title, layout, menu items and links.
-st.set_page_config(
-    page_title="Streamlit Uploads Library",
-    initial_sidebar_state="expanded",
-    layout="wide",
-    menu_items={
-        "Get Help": "https://github.com/hreikin/streamlit-uploads-library",
-        "Report a bug": "https://github.com/hreikin/streamlit-uploads-library/issues",
-        "About": """
-        Streamlit Uploads Library is created and maintained by [@hreikin](https://hreikin.co.uk). The source code is available on [GitHub](https://github.com/hreikin/streamlit-uploads-library), community contributions are always welcome.
-        
-        MIT licensed: [MIT](https://opensource.org/license/mit/)
-        """
-    },
-)
-
-source_code = """
-import streamlit as st
 from pathlib import Path
 
 @st.cache_resource(show_spinner="Refreshing gallery...")
 class Gallery():
+    """Create a simple gallery out of streamlit widgets.
+
+    Using the gallery is simple, import `streamlit_uploads_library` and then instantiate the class with the 
+    required `directory` variable. Other options can be configured by passing in different variables 
+    when instantiating the class.
+
+    Example Usage:
+        python
+        import streamlit as st
+        from streamlit_uploads_library import Gallery
+
+        st.set_page_config(page_title="Streamlit Uploads Library", layout="wide")
+        default_gallery = Gallery(directory="assets")
+        gallery_with_columns = Gallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
+        expander_gallery = Gallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
+        multiple_options_gallery = Gallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
+   
+    Args:
+        directory (str): A str() of the path to the folder containing the gallery images, for example, "assets".
+        expanded (bool): A bool(), passing False starts the expander type gallery closed, default is open and True.
+        file_extensions (tuple): A tuple() containing strings of the file extensions to include in the gallery, default is (".png", ".jpg", ".jpeg").
+        gallery_type (str): A str() with either "container" or "expander" used as the keyword, the default is "container".
+        label (str or None): A str() containing the name of the gallery, passing None disables the label. The default value is "Gallery".
+        number_of_columns (int): An int() defining the number of required columns, default is 5.
+        show_filenames (bool): A bool(), passing True displays the filenames, the default is False which hides them.
+    """
     def __init__(self, directory, expanded=True, file_extensions=(".png", ".jpg", ".jpeg"), gallery_type="container", label="**Gallery**" or None, number_of_columns=5, show_filename=False):
         self.directory = Path(directory).resolve()
         self.expanded = expanded
@@ -34,6 +40,14 @@ class Gallery():
         self.gallery = self.create_gallery()
 
     def fetch_files(self):
+        """Returns a list of all files and filenames.
+
+        Returns a list of files and a list of filenames to be used by create_gallery().
+        
+        Returns:
+            all_files (list): A list of files.
+            all_filenames (list): A list of filenames.
+        """
         self.all_files = list()
         self.all_filenames = list()
         for item in self.directory.rglob("*"):
@@ -43,6 +57,13 @@ class Gallery():
         return self.all_files, self.all_filenames
 
     def create_gallery(self):
+        """Creates a simple gallery with columns.
+
+        Creates a gallery using columns out of streamlit widgets.
+        
+        Returns:
+            container_or_expander (st.container or st.expander): A streamlit widget containing the gallery.
+        """
         if self.gallery_type == "expander":
             if self.label == None:
                 self.label = ""
@@ -74,23 +95,3 @@ class Gallery():
                         self.col_idx = 0
                     self.filename_idx += 1
         return self.container_or_expander
-"""
-cache_usage = """
-Streamlit Uploads Library makes use of the `st.cache_resource` decorator so the galleries on this 
-page will load from the cache instead of reloading the images each time the app is run. You will 
-probably want to clear your cache after uploading new files to your app, to do this you can use the 
-`st.cache_resource.clear()` function provided by Streamlit.
-"""
-
-with st.sidebar:
-    st.info("Welcome to the `streamlit-uploads-library` example app.")
-
-st.header("Caching")
-st.markdown(body=cache_usage)
-default_gallery = Gallery(directory="assets")
-gallery_with_columns = Gallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
-expander_gallery = Gallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
-multiple_options_gallery = Gallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
-
-with st.expander(label="**Source Code**", expanded=True):
-    st.code(body=source_code)

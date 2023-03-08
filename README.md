@@ -28,7 +28,7 @@ when instantiating the class.
 
 ```python
 import streamlit as st
-from streamlit_uploads_library import ImageGallery
+from streamlit_uploads_library.gallery import Gallery
 
 st.set_page_config(page_title="Streamlit Uploads Library", layout="wide")
 default_gallery = ImageGallery(directory="assets")
