@@ -78,7 +78,7 @@ default_uploader = UploadFiles(save_location="assets")
 with st.sidebar:
     st.info("Welcome to the `streamlit-uploads-library` example app.")
 
-st.header("Streamlit Uploads Library - Uploads")
+st.header("Uploads")
 st.markdown(body=example_usage)
 st.markdown(body=configuration)
 st.code(body=example_usage_code)
