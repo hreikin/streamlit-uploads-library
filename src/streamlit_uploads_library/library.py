@@ -1,5 +1,6 @@
 import streamlit as st
 from pathlib import Path
+from math import ceil
 
 class Library():
     """Create a simple library out of streamlit widgets.
@@ -27,7 +28,7 @@ class Library():
         self.file_extensions = file_extensions
         self.number_of_columns = number_of_columns
         self.show_details = show_details
-        self.library = self.create_library()
+        self.library = self.create_library(self.number_of_columns, self.show_details)
 
     def fetch_files(self):
         """Returns a list of all files and filenames.
@@ -46,28 +47,65 @@ class Library():
                 self.all_filenames.append(str(item.name))
         return self.all_files, self.all_filenames
 
-    @st.cache_resource(show_spinner="Refreshing library...")
-    def create_library(_self):
+    @st.cache_resource(experimental_allow_widgets=True, show_spinner="Refreshing library...")
+    def create_library(_self, number_of_columns, show_details):
         """Creates a simple library with columns.
 
         Creates a library using columns out of streamlit widgets.
         
         Returns:
-            library_container (st.container or st.expander): A streamlit widget containing the library.
+            library_container (st.container): A streamlit widget containing the library.
         """
         _self.library_container = st.container()
         with _self.library_container:
+            # To be able to display the images, details and buttons all in one row and aligned 
+            # correctly so that images of different sizes don't affect the alignment of the details 
+            # and buttons we need do some minor maths and keep track of multiple index values. 
+            # First we instantiate some defaults.
             _self.col_idx = 0
             _self.filename_idx = 0
-            _self.max_idx = _self.number_of_columns-1
+            _self.max_idx = number_of_columns-1
+            # Get the file list and filename list, work out the total number of files from the 
+            # length of the file list.
             _self.library_files, _self.library_filenames = _self.fetch_files()
-            _self.all_columns = list(st.columns(_self.number_of_columns))
-            for img in _self.library_files:
-                with _self.all_columns[_self.col_idx]:
-                    st.image(img, use_column_width=True)
-                    if _self.col_idx < _self.max_idx:
-                        _self.col_idx += 1
-                    else:
-                        _self.col_idx = 0
-                    _self.filename_idx += 1
+            _self.num_of_files = len(_self.library_files)
+            # Work out the number of rows required by dividing the number of files by the number of 
+            # columns and rounding up using `math.ceil`.
+            _self.num_of_rows_req = ceil(_self.num_of_files / number_of_columns)
+            # Create the required number of rows (st.container).
+            _self.library_rows = list()
+            _self.library_rows_idx = 0
+            for i in range(_self.num_of_rows_req):
+                _self.library_rows.append(st.container())
+            # For each library row we need to create separate rows (st.container) for images, 
+            # details and buttons to keep them aligned correctly.
+            for idx in range(_self.num_of_rows_req):
+                with _self.library_rows[_self.library_rows_idx]:
+                    _self.imgs_row = st.container()
+                    _self.imgs_columns = list(st.columns(number_of_columns))
+                    _self.details_row = st.container()
+                    _self.details_columns = list(st.columns(number_of_columns))
+                    _self.btns_row = st.container()
+                    _self.btns_columns = list(st.columns(number_of_columns))
+                    # Since we are keeping track of the column and filename indexes we can use 
+                    # those to slice the `library_files` list at the correct points for each row 
+                    # and then increase or reset the indexes as required.
+                    for img in _self.library_files[_self.filename_idx:(_self.filename_idx + number_of_columns)]:
+                        with _self.imgs_columns[_self.col_idx]:
+                            st.image(img, use_column_width=True)
+                        if show_details == True:
+                            with _self.details_columns[_self.col_idx]:
+                                st.markdown("EXAMPLE DETAILS")
+                            with _self.btns_columns[_self.col_idx]:
+                                st.button(label="Save", key=f"save_{_self.filename_idx}", help="Save file detail changes.", type="primary")
+                        # Keeps track of the current column, if we reach the `max_idx` we reset it 
+                        # to 0 and increase the row index. This combined with the slicing should 
+                        # ensure all images, details and buttons are aligned correctly.
+                        if _self.col_idx < _self.max_idx:
+                            _self.col_idx += 1
+                        else:
+                            _self.col_idx = 0
+                            _self.library_rows_idx += 1
+                        _self.filename_idx += 1
+
         return _self.library_container
