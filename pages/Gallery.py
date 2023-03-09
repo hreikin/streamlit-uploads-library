@@ -80,12 +80,8 @@ when instantiating the class.
 """
 configuration = """
 - `directory` (required): A `str()` of the path to the folder containing the gallery images, for example, `"assets"`.
-- `expanded` (optional): A `bool()`, passing `False` starts the expander type gallery closed, default is open and `True`.
 - `file_extensions` (optional): A `tuple()` containing strings of the file extensions to include in the gallery, default is `(".png", ".jpg", ".jpeg")`.
-- `gallery_type` (optional): A `str()` with either "container" or "expander" used as the keyword, the default is `"container"`.
-- `label` (optional): A `str()` containing the name of the gallery, passing `None` disables the label. The default value is `"Gallery"`.
 - `number_of_columns` (optional): An `int()` defining the number of required columns, default is `5`.
-- `show_filenames` (optional): A `bool()`, passing `True` displays the filenames, the default is `False` which hides them.
 """
 example_usage_code = """
 import streamlit as st
@@ -94,8 +90,6 @@ from streamlit_uploads_library.gallery import Gallery
 st.set_page_config(page_title="Streamlit Uploads Library")
 default_gallery = Gallery(directory="assets")
 gallery_with_columns = Gallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
-expander_gallery = Gallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
-multiple_options_gallery = Gallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
 """
 
 with st.sidebar:
@@ -106,9 +100,7 @@ st.markdown(body=example_usage)
 st.markdown(body=configuration)
 st.code(body=example_usage_code)
 default_gallery = Gallery(directory="assets")
-gallery_with_columns = Gallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
-expander_gallery = Gallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
-multiple_options_gallery = Gallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
+gallery_with_columns = Gallery(directory="assets", number_of_columns=3)
 
 with st.expander(label="**Source Code**", expanded=True):
     st.code(body=source_code)

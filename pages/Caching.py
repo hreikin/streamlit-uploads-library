@@ -27,6 +27,4 @@ with st.sidebar:
 st.header("Caching")
 st.markdown(body=cache_usage)
 default_gallery = Gallery(directory="assets")
-gallery_with_columns = Gallery(directory="assets", label="**Gallery - Columns**", number_of_columns=3)
-expander_gallery = Gallery(directory="assets", expanded=True, gallery_type="expander", label="**Gallery - Expander**")
-multiple_options_gallery = Gallery(directory="assets", gallery_type="expander", label="**Gallery - Multiple Options**", number_of_columns=3, show_filename=False)
+gallery_with_columns = Gallery(directory="assets", number_of_columns=3)
