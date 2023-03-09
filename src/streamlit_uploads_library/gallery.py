@@ -9,5 +9,6 @@ class Gallery(Library):
     def fetch_files(self):
         return super().fetch_files()
 
+    @st.cache_resource(experimental_allow_widgets=True, show_spinner="Refreshing gallery...")
     def create_gallery(_self):
-        return super().create_library()
+        return super().create_library(_self.number_of_columns, _self.show_details)
