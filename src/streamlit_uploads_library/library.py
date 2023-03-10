@@ -49,11 +49,13 @@ class Library():
                 self.all_filenames.append(str(item.name))
         return self.all_files, self.all_filenames
 
-    def delete_file(self, file):
-        pass
-
-    def rename_file(self, file):
-        pass
+    def update_file(self, old_file, new_file, del_check=False):
+        if del_check == False:
+            old_file.rename(old_file.with_stem(new_file))
+        else:
+            old_file.unlink()
+        st.cache_resource.clear()
+        st.experimental_rerun()
 
     @st.cache_resource(experimental_allow_widgets=True, show_spinner="Refreshing library...")
     def create_library(_self, number_of_columns, show_details):
@@ -106,15 +108,16 @@ class Library():
                                         try:
                                             img_meta = get_image_size.get_image_metadata(img)
                                             img_path = Path(img).resolve()
-                                            st.text_input(label="Name:", key=f"name_{_self.filename_idx}", value=f"{img_path.stem}")
-                                            st.text_input(label="Type:", key=f"type_{_self.filename_idx}", value=f"{img_path.suffix.strip('.').upper()}", disabled=True)
+                                            new_name = st.text_input(label="Name:", key=f"{img_path.stem}_name_{_self.filename_idx}", value=f"{img_path.stem}")
+                                            st.text_input(label="Type:", key=f"{img_path.stem}_type_{_self.filename_idx}", value=f"{img_path.suffix.strip('.').upper()}", disabled=True)
                                             details_col1, details_col2 = st.columns(2)
-                                            st.form_submit_button(label="Rename", type="primary", use_container_width=True, on_click=lambda: _self.rename_file(img_path))
-                                            st.form_submit_button(label="Delete", use_container_width=True, on_click=lambda: _self.delete_file(img_path))
+                                            del_check = st.checkbox(label="Delete file ?")
+                                            if st.form_submit_button(label="Update", type="primary", use_container_width=True):
+                                                _self.update_file(img_path, new_name, del_check)
                                             with details_col1:
-                                                st.text_input(label="Width:", key=f"width_{_self.filename_idx}", value=f"{img_meta.width}", disabled=True)
+                                                st.text_input(label="Width:", key=f"{img_path.stem}_width_{_self.filename_idx}", value=f"{img_meta.width}", disabled=True)
                                             with details_col2:
-                                                st.text_input(label="Height:", key=f"height_{_self.filename_idx}", value=f"{img_meta.height}", disabled=True)
+                                                st.text_input(label="Height:", key=f"{img_path.stem}_height_{_self.filename_idx}", value=f"{img_meta.height}", disabled=True)
                                         except get_image_size.UnknownImageFormat:
                                             width, height = -1, -1
                         # Keeps track of the current column, if we reach the `max_idx` we reset it 
