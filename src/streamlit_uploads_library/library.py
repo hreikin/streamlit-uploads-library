@@ -1,4 +1,5 @@
 import streamlit as st
+import get_image_size
 from pathlib import Path
 from math import ceil
 
@@ -23,8 +24,9 @@ class Library():
         number_of_columns (int): An int() defining the number of required columns, default is 5.
         show_details (bool): A bool() to show or hide the file and edit details, False hides them, default is True to show them.
     """
-    def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), number_of_columns=5, show_details=True):
+    def __init__(self, directory, expanded_details=True, file_extensions=(".png", ".jpg", ".jpeg"), number_of_columns=5, show_details=True):
         self.directory = Path(directory).resolve()
+        self.expanded_details = expanded_details
         self.file_extensions = file_extensions
         self.number_of_columns = number_of_columns
         self.show_details = show_details
@@ -46,6 +48,12 @@ class Library():
                 self.all_files.append(str(item.resolve()))
                 self.all_filenames.append(str(item.name))
         return self.all_files, self.all_filenames
+
+    def delete_file(self, file):
+        pass
+
+    def rename_file(self, file):
+        pass
 
     @st.cache_resource(experimental_allow_widgets=True, show_spinner="Refreshing library...")
     def create_library(_self, number_of_columns, show_details):
@@ -85,19 +93,30 @@ class Library():
                     _self.imgs_columns = list(st.columns(number_of_columns))
                     _self.details_row = st.container()
                     _self.details_columns = list(st.columns(number_of_columns))
-                    _self.btns_row = st.container()
-                    _self.btns_columns = list(st.columns(number_of_columns))
                     # Since we are keeping track of the column and filename indexes we can use 
                     # those to slice the `library_files` list at the correct points for each row 
                     # and then increase or reset the indexes as required.
                     for img in _self.library_files[_self.filename_idx:(_self.filename_idx + number_of_columns)]:
                         with _self.imgs_columns[_self.col_idx]:
-                            st.image(img, use_column_width=True)
+                            st.image(img, use_column_width="auto")
                         if show_details == True:
                             with _self.details_columns[_self.col_idx]:
-                                st.markdown("EXAMPLE DETAILS")
-                            with _self.btns_columns[_self.col_idx]:
-                                st.button(label="Save", key=f"save_{_self.filename_idx}", help="Save file detail changes.", type="primary")
+                                with st.expander(label="Details", expanded=_self.expanded_details):
+                                    with st.form(key=f"details_form_{_self.filename_idx}"):
+                                        try:
+                                            img_meta = get_image_size.get_image_metadata(img)
+                                            img_path = Path(img).resolve()
+                                            st.text_input(label="Name:", key=f"name_{_self.filename_idx}", value=f"{img_path.stem}")
+                                            st.text_input(label="Type:", key=f"type_{_self.filename_idx}", value=f"{img_path.suffix.strip('.').upper()}", disabled=True)
+                                            details_col1, details_col2 = st.columns(2)
+                                            st.form_submit_button(label="Rename", type="primary", use_container_width=True, on_click=lambda: _self.rename_file(img_path))
+                                            st.form_submit_button(label="Delete", use_container_width=True, on_click=lambda: _self.delete_file(img_path))
+                                            with details_col1:
+                                                st.text_input(label="Width:", key=f"width_{_self.filename_idx}", value=f"{img_meta.width}", disabled=True)
+                                            with details_col2:
+                                                st.text_input(label="Height:", key=f"height_{_self.filename_idx}", value=f"{img_meta.height}", disabled=True)
+                                        except get_image_size.UnknownImageFormat:
+                                            width, height = -1, -1
                         # Keeps track of the current column, if we reach the `max_idx` we reset it 
                         # to 0 and increase the row index. This combined with the slicing should 
                         # ensure all images, details and buttons are aligned correctly.
