@@ -1,7 +1,10 @@
 import streamlit as st
 import get_image_size
+import logging
 from pathlib import Path
 from math import ceil
+
+logger = logging.getLogger(__name__)
 
 class Library():
     """Create a simple library out of streamlit widgets.
@@ -51,9 +54,12 @@ class Library():
 
     def update_file(self, old_file, new_file, del_check=False):
         if del_check == False:
-            old_file.rename(old_file.with_stem(new_file))
+            old_file.replace(old_file.with_stem(new_file))
         else:
-            old_file.unlink()
+            try:
+                old_file.unlink()
+            except FileNotFoundError as e:
+                logger.warning(e)
         st.cache_resource.clear()
         st.experimental_rerun()
 
