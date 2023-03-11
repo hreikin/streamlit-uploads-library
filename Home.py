@@ -1,11 +1,13 @@
 import streamlit as st
 from src.streamlit_uploads_library.gallery import Gallery
 from src.streamlit_uploads_library.uploads import UploadFiles
+from src.streamlit_uploads_library.library import Library
 
 # Configure page title, layout, menu items and links.
 st.set_page_config(
     page_title="Streamlit Uploads Library",
     initial_sidebar_state="expanded",
+    layout="wide",
     menu_items={
         "Get Help": "https://github.com/hreikin/streamlit-uploads-library",
         "Report a bug": "https://github.com/hreikin/streamlit-uploads-library/issues",
@@ -17,14 +19,27 @@ st.set_page_config(
     },
 )
 install_instructions = """
-A wrapper around `st.file_uploader` providing library and gallery views for use in Streamlit projects. Installation is available via pip:
+This package provides a simple wrapper around `st.file_uploader` with a save function included and 
+also provides library and gallery views for use in Streamlit projects. Installation is available 
+via pip:
 
 ```
 pip install streamlit-uploads-library
 ```
+
+The file uploader can be seen in the sidebar and the library and gallery views are shown down 
+below. Using any of the provided views is easy, just import the class and then instantiate it. 
+Multiple options are able to be configured with more info available on the relevant pages. Here 
+is a code example that shows how to create the default library, gallery and file uploader views. 
 """
 example_usage_code = """
-EXAMPLE USAGE CODE
+from streamlit_uploads_library.gallery import Gallery
+from streamlit_uploads_library.uploads import UploadFiles
+from streamlit_uploads_library.library import Library
+
+default_library = Library(directory="assets")               # Displays a library view with details in a grid
+default_gallery = Gallery(directory="assets")               # Displays a simple gallery to show images in a grid
+default_uploader = UploadFiles(save_location="assets")      # Wraps st.file_uploader and provides save functionality
 """
 
 with st.sidebar:
@@ -34,5 +49,5 @@ with st.sidebar:
 st.header("Streamlit Uploads Library")
 st.markdown(body=install_instructions)
 st.code(body=example_usage_code)
+default_library = Library(directory="assets")
 default_gallery = Gallery(directory="assets")
-gallery_with_columns = Gallery(directory="assets", number_of_columns=3)
