@@ -105,6 +105,15 @@ class Library():
                 for img in _self.library_files[_self.filename_idx:(_self.filename_idx + number_of_columns)]:
                     with _self.imgs_columns[_self.col_idx]:
                         st.image(img, use_column_width="auto")
+                        st.write(
+                                """<style>
+                                [data-testid="stHorizontalBlock"] {
+                                    align-items: center;
+                                }
+                                </style>
+                                """,
+                                unsafe_allow_html=True
+                            )
                     if show_details == True:
                         with _self.details_columns[_self.col_idx]:
                             # with st.expander(label="Details", expanded=_self.expanded_details):
