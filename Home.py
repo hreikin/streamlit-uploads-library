@@ -19,6 +19,8 @@ st.set_page_config(
     },
 )
 install_instructions = """
+> Under development, coming soon.
+
 This package provides a simple wrapper around `st.file_uploader` with a save function included and 
 also provides library and gallery views for use in Streamlit projects. Installation is available 
 via pip:
