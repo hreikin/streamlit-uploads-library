@@ -23,6 +23,8 @@ import get_image_size
 from pathlib import Path
 from math import ceil
 
+logger = logging.getLogger(__name__)
+
 class Library():
     """Create a simple library out of streamlit widgets.
 
@@ -71,9 +73,15 @@ class Library():
 
     def update_file(self, old_file, new_file, del_check=False):
         if del_check == False:
-            old_file.rename(old_file.with_stem(new_file))
+            try:
+                old_file.rename(old_file.with_stem(new_file))
+            except FileExistsError as e:
+                logger.warning(e)
         else:
-            old_file.unlink()
+            try:
+                old_file.unlink()
+            except FileNotFoundError as e:
+                logger.warning(e)
         st.cache_resource.clear()
         st.experimental_rerun()
 
@@ -125,6 +133,15 @@ class Library():
                 for img in _self.library_files[_self.filename_idx:(_self.filename_idx + number_of_columns)]:
                     with _self.imgs_columns[_self.col_idx]:
                         st.image(img, use_column_width="auto")
+                        st.write(
+                                """<style>
+                                [data-testid="stHorizontalBlock"] {
+                                    align-items: center;
+                                }
+                                </style>
+                                """,
+                                unsafe_allow_html=True
+                            )
                     if show_details == True:
                         with _self.details_columns[_self.col_idx]:
                             # with st.expander(label="Details", expanded=_self.expanded_details):
@@ -156,7 +173,9 @@ class Library():
         return _self.library_container
 '''
 
-library = Library(directory="assets", number_of_columns=5)
+library = Library(directory="assets")
+library_details = Library(directory="assets", expanded_details=False)
+library_with_columns = Library(directory="assets", number_of_columns=4)
 
 with st.expander(label="**Source Code**", expanded=True):
     st.code(body=source_code)

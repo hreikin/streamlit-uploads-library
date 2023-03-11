@@ -22,8 +22,8 @@ import streamlit as st
 from streamlit_uploads_library.library import Library
 
 class Gallery(Library):
-    def __init__(self, directory, expanded=False, file_extensions=(".png", ".jpg", ".jpeg"), number_of_columns=5, show_details=False):
-        super(Gallery, self).__init__(directory, expanded, file_extensions, number_of_columns, show_details)
+    def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), number_of_columns=5):
+        super(Gallery, self).__init__(directory, file_extensions, number_of_columns)
 
     def fetch_files(self):
         return super().fetch_files()
@@ -60,7 +60,7 @@ st.markdown(body=example_usage)
 st.markdown(body=configuration)
 st.code(body=example_usage_code)
 default_gallery = Gallery(directory="assets")
-gallery_with_columns = Gallery(directory="assets", number_of_columns=3)
+gallery_with_columns = Gallery(directory="assets", number_of_columns=4)
 
 with st.expander(label="**Source Code**", expanded=True):
     st.code(body=source_code)
