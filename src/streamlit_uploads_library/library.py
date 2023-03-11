@@ -54,7 +54,10 @@ class Library():
 
     def update_file(self, old_file, new_file, del_check=False):
         if del_check == False:
-            old_file.replace(old_file.with_stem(new_file))
+            try:
+                old_file.rename(old_file.with_stem(new_file))
+            except FileExistsError as e:
+                logger.warning(e)
         else:
             try:
                 old_file.unlink()
