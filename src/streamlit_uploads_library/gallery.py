@@ -1,5 +1,4 @@
 import streamlit as st
-from pathlib import Path
 from src.streamlit_uploads_library.library import Library
 
 class Gallery(Library):
