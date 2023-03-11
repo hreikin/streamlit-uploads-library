@@ -4,6 +4,8 @@ from src.streamlit_uploads_library.uploads import UploadFiles
 # Configure page title, layout, menu items and links.
 st.set_page_config(
     page_title="Streamlit Uploads Library",
+    initial_sidebar_state="expanded",
+    layout="wide",
     menu_items={
         "Get Help": "https://github.com/hreikin/streamlit-uploads-library",
         "Report a bug": "https://github.com/hreikin/streamlit-uploads-library/issues",
@@ -32,6 +34,12 @@ class UploadFiles():
         self.label = label
         self.widget_type = widget_type
         self.upload_label = upload_label
+        self.uploader = self.create_layout()
+
+        if self.uploaded_files is not None:
+            self.save_uploaded_files(self.uploaded_files, self.save_location)
+
+    def create_layout(self):
         if self.widget_type == "expander":
             if self.label == None:
                 self.label = ""
@@ -48,13 +56,12 @@ class UploadFiles():
         with self.upload_options:
             self.upload_options_msg = st.info(self.info_msg)
             self.uploaded_files = st.file_uploader(label=self.upload_label, accept_multiple_files=True, type=self.file_extenions, help="Upload a new file.")
-        if self.uploaded_files is not None:
-            self.save_uploaded_files(self.uploaded_files, self.save_location)
+        return self.upload_options
 
     def save_uploaded_files(self, files_to_upload, destination):
         for file in files_to_upload:
             self.full_path = Path(f"{destination}/{file.name}")
-            with Image.open(files_to_upload) as f:
+            with Image.open(file) as f:
                 f.save(self.full_path)
         st.cache_resource.clear()
 """
