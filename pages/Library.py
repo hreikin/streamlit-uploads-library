@@ -44,8 +44,10 @@ class Library():
     Args:
         directory (str): A str() of the path to the folder containing the library images, for example, "assets".
         file_extensions (tuple): A tuple() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
+        image_alignment (str): A str() with the CSS keyword used to align the images and details columns.
         number_of_columns (int): An int() defining the number of required columns, default is 5.
         show_details (bool): A bool() to show or hide the file and edit details, False hides them, default is True to show them.
+        uid (str): A str() containing a unique identifier allowing you to create multiple libraries on the same page containing the same images.
     """
     def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), image_alignment="end", number_of_columns=5, show_details=True, uid="library"):
         self.directory = Path(directory).resolve()
@@ -74,6 +76,15 @@ class Library():
         return self.all_files, self.all_filenames
 
     def update_file(self, old_file, new_file, del_check=False):
+        """Update or delete the file.
+        
+        Updates or deletes the file depending on the supplied options.
+
+        Args:
+            old_file (Path): A Path() object pointing to the file to be changed.
+            new_file (str): A str() containing the desired name of the new file.
+            del_check (bool): A bool() used to set the mode (update/delete) of the method.
+        """
         if del_check == False:
             try:
                 old_file.rename(old_file.with_stem(new_file))
@@ -92,6 +103,10 @@ class Library():
         """Creates a simple library with columns.
 
         Creates a library using columns out of streamlit widgets.
+
+        Args:
+            number_of_columns (int): An int() indicating the number of columns to create.
+            show_details (bool): A bool() that when set to False allows the creation of galleries, default is True to create a library.
         
         Returns:
             library_container (st.container): A streamlit widget containing the library.
