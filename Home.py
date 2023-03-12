@@ -18,7 +18,14 @@ st.set_page_config(
         """
     },
 )
-install_instructions = """
+
+with st.sidebar:
+    st.info("Welcome to the `streamlit-uploads-library` example app.")
+    default_uploader = UploadFiles(save_location="assets")
+
+st.header("Streamlit Uploads Library")
+st.markdown(
+"""
 > Under development, coming soon.
 
 This package provides a simple wrapper around `st.file_uploader` with a save function included and 
@@ -34,7 +41,9 @@ below. Using any of the provided views is easy, just import the class and then i
 Multiple options are able to be configured with more info available on the relevant pages. Here 
 is a code example that shows how to create the default library, gallery and file uploader views. 
 """
-example_usage_code = """
+)
+st.code(
+"""
 from streamlit_uploads_library.gallery import Gallery
 from streamlit_uploads_library.uploads import UploadFiles
 from streamlit_uploads_library.library import Library
@@ -43,13 +52,6 @@ default_library = Library(directory="assets")               # Displays a library
 default_gallery = Gallery(directory="assets")               # Displays a simple gallery to show images in a grid
 default_uploader = UploadFiles(save_location="assets")      # Wraps st.file_uploader and provides save functionality
 """
-
-with st.sidebar:
-    st.info("Welcome to the `streamlit-uploads-library` example app.")
-    default_uploader = UploadFiles(save_location="assets")
-
-st.header("Streamlit Uploads Library")
-st.markdown(body=install_instructions)
-st.code(body=example_usage_code)
+)
 default_library = Library(directory="assets")
 default_gallery = Gallery(directory="assets")

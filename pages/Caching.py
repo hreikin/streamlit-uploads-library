@@ -17,17 +17,18 @@ st.set_page_config(
         """
     },
 )
-cache_usage = """
-Streamlit Uploads Library makes use of the `st.cache_resource` decorator so the library and gallery 
-on this page will load from the cache instead of reloading the images each time the app is run. You 
-will probably want to clear your cache after uploading new files to your app, to do this you can use 
-the `st.cache_resource.clear()` function provided by Streamlit.
-"""
 
 with st.sidebar:
     st.info("Welcome to the `streamlit-uploads-library` example app.")
 
 st.header("Caching")
-st.markdown(body=cache_usage)
-default_gallery = Gallery(directory="assets")
+st.markdown(
+"""
+Streamlit Uploads Library makes use of the `st.cache_resource` decorator so the library and gallery 
+on this page will load from the cache instead of reloading the images each time the app is run. You 
+will probably want to clear your cache after uploading new files to your app, to do this you can use 
+the `st.cache_resource.clear()` function provided by Streamlit.
+"""
+)
 default_library = Library(directory="assets")
+default_gallery = Gallery(directory="assets")

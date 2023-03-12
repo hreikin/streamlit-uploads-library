@@ -65,30 +65,30 @@ class UploadFiles():
                 f.save(self.full_path)
         st.cache_resource.clear()
 """
-example_usage = """
+
+with st.sidebar:
+    st.info("Welcome to the `streamlit-uploads-library` example app.")
+
+st.header("Uploads")
+st.markdown(
+"""
 A file uploader is provided with multiple options able to be configured including 2 different view 
 types. It is not required to use this and you can easily replace it with your own, it is provided 
 as a convenience so you dont need to create the code yourself or replicate it across multiple 
 projects.
-"""
-configuration = """
+
 - `save_location` (required): A `str()` of the path to the folder you want to save files in, for example, `"assets"`.
 """
-example_usage_code = """
+)
+st.code(
+"""
 import streamlit as st
 from streamlit_uploads_library.uploads import UploadFiles
 
 st.set_page_config(page_title="Streamlit Uploads Library")
 default_uploader = UploadFiles(save_location="assets")
 """
-
-with st.sidebar:
-    st.info("Welcome to the `streamlit-uploads-library` example app.")
-
-st.header("Uploads")
-st.markdown(body=example_usage)
-st.markdown(body=configuration)
-st.code(body=example_usage_code)
+)
 default_uploader = UploadFiles(save_location="assets")
 
 with st.expander(label="**Source Code**", expanded=True):
