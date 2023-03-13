@@ -81,7 +81,7 @@ from streamlit_uploads_library.uploads import UploadFiles
 
 st.set_page_config(page_title="Streamlit Uploads Library", layout="wide")
 default_uploader = UploadFiles(save_location="assets")
-default_uploader = UploadFiles(save_location="assets", widget_type="expander")
+expander_uploader = UploadFiles(save_location="assets", widget_type="expander")
 ```
 
 ## Caching
