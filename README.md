@@ -2,11 +2,10 @@
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hreikin-streamlit-uploads-library-home-ar6h9h.streamlit.app/)
 
-> Under development, coming soon.
-
-A simple gallery for use in Streamlit projects. Check out the demo using the Streamlit Cloud button above. 
-This package provides a simple wrapper around `st.file_uploader` with a save function included and 
-also provides library and gallery views for use in Streamlit projects.
+A simple uploads library and gallery for use in Streamlit projects. Check out the demo using the 
+Streamlit Cloud button above. This package provides a simple wrapper around `st.file_uploader` 
+with a save function included and also provides library and gallery views for use in Streamlit 
+projects.
 
 ## Installation
 

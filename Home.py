@@ -25,8 +25,6 @@ with st.sidebar:
 st.header("Streamlit Uploads Library")
 st.markdown(
 """
-> Under development, coming soon.
-
 This package provides a simple wrapper around `st.file_uploader` with a save function included and 
 also provides library and gallery views for use in Streamlit projects. Installation is available 
 via pip:
