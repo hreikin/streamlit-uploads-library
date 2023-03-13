@@ -6,7 +6,6 @@ from src.streamlit_uploads_library.library import Library
 # Configure page title, layout, menu items and links.
 st.set_page_config(
     page_title="Streamlit Uploads Library",
-    initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
         "Get Help": "https://github.com/hreikin/streamlit-uploads-library",
@@ -53,5 +52,5 @@ default_gallery = Gallery(directory="assets")               # Displays a simple 
 default_uploader = UploadFiles(save_location="assets")      # Wraps st.file_uploader and provides save functionality
 """
 )
-default_library = Library(directory="assets")
-default_gallery = Gallery(directory="assets")
+default_library = Library(directory="assets/landscape/")
+default_gallery = Gallery(directory="assets/portrait/")

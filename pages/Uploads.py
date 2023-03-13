@@ -4,7 +4,6 @@ from src.streamlit_uploads_library.uploads import UploadFiles
 # Configure page title, layout, menu items and links.
 st.set_page_config(
     page_title="Streamlit Uploads Library",
-    initial_sidebar_state="expanded",
     layout="wide",
     menu_items={
         "Get Help": "https://github.com/hreikin/streamlit-uploads-library",
