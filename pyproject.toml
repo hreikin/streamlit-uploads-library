@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "streamlit_uploads_library"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
   { name="Michael Haslam", email="hreikin@gmail.com" },
 ]
