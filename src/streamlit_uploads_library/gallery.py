@@ -23,11 +23,15 @@ class Gallery(Library):
         uid (str): A str() containing a unique identifier allowing you to create multiple galleries on the same page containing the same images.
     """
     def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), number_of_columns=5, uid="gallery"):
-        image_alignment = "center"
-        show_details=False
-        super(Gallery, self).__init__(directory, file_extensions, image_alignment, number_of_columns, show_details, uid)
+        self.directory = directory
+        self.file_extensions = file_extensions
+        self.image_alignment = "center"
+        self.number_of_columns = number_of_columns
+        self.show_details=False
+        self.uid = uid
+        super(Gallery, self).__init__(self.directory, self.file_extensions, self.image_alignment, self.number_of_columns, self.show_details, self.uid)
 
-    def fetch_files(self):
+    def fetch_files(self, directory, file_extensions):
         """Returns a list of all files and filenames.
 
         Returns a list of files and a list of filenames to be used by create_gallery().
@@ -36,10 +40,10 @@ class Gallery(Library):
             all_files (list): A list of files.
             all_filenames (list): A list of filenames.
         """
-        return super().fetch_files()
+        return super().fetch_files(directory, file_extensions)
 
     @st.cache_resource(experimental_allow_widgets=True, show_spinner="Refreshing gallery...")
-    def create_gallery(_self):
+    def create_gallery(_self, directory, file_extensions, image_alignment, number_of_columns, show_details, uid):
         """Creates a simple gallery with columns.
 
         Creates a gallery using columns out of streamlit widgets.
@@ -51,4 +55,4 @@ class Gallery(Library):
         Returns:
             library_container (st.container): A streamlit widget containing the library.
         """
-        return super().create_library(_self.number_of_columns, _self.show_details)
+        return super().create_library(directory, file_extensions, image_alignment, number_of_columns, show_details, uid)
