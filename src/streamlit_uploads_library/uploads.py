@@ -27,7 +27,7 @@ class UploadFiles():
         info_msg (str): A str() used to set an info message above the uploader, default is "Upload new files here.".
         label (str): A str() used to set the label of the "expander" or the header in the "container" type widget, default is "Upload Files", can be set to None to not display it.
         upload_label (str): A str() used to set the label of the file uploader widget, default is "Upload Files".
-        widget_type (str): A str() defining the type of widget to use to display te file uploader, options are "container" or "expander", default is "container".
+        widget_type (str): A str() defining the type of widget to use to display the file uploader, options are "container" or "expander", default is "container".
     """
     def __init__(self, save_location, expanded=True, file_extensions=["png", "jpg", "jpeg"], info_msg="Upload new files here.", label="Upload Files", upload_label="Upload Files", widget_type="container"):
         self.save_location = save_location
