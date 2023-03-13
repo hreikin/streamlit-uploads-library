@@ -22,12 +22,12 @@ class Gallery(Library):
         number_of_columns (int): An int() defining the number of required columns, default is 5.
         uid (str): A str() containing a unique identifier allowing you to create multiple galleries on the same page containing the same images.
     """
-    def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), number_of_columns=5, uid="gallery"):
+    def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), image_alignment="center", number_of_columns=5, show_details=False, uid="gallery"):
         self.directory = directory
         self.file_extensions = file_extensions
-        self.image_alignment = "center"
+        self.image_alignment = image_alignment
         self.number_of_columns = number_of_columns
-        self.show_details=False
+        self.show_details = show_details
         self.uid = uid
         super(Gallery, self).__init__(self.directory, self.file_extensions, self.image_alignment, self.number_of_columns, self.show_details, self.uid)
 
