@@ -1,5 +1,5 @@
 import streamlit as st
-from src.streamlit_uploads_library.library import Library
+from streamlit_uploads_library.library import Library
 
 class Gallery(Library):
     """Create a simple gallery out of streamlit widgets.
