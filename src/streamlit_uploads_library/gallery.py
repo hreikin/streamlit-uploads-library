@@ -19,7 +19,9 @@ class Gallery(Library):
     Args:
         directory (str): A str() of the path to the folder containing the gallery images, for example, "assets".
         file_extensions (tuple): A tuple() containing strings of the file extensions to include in the gallery, default is (".png", ".jpg", ".jpeg").
+        image_alignment (str): A str() with the CSS keyword used to align the images and details columns.
         number_of_columns (int): An int() defining the number of required columns, default is 5.
+        show_details (bool): A bool() to show or hide the file and edit details, True shows them, default is False to hide them and create a gallery.
         uid (str): A str() containing a unique identifier allowing you to create multiple galleries on the same page containing the same images.
     """
     def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), image_alignment="center", number_of_columns=5, show_details=False, uid="gallery"):
@@ -32,9 +34,13 @@ class Gallery(Library):
         super(Gallery, self).__init__(self.directory, self.file_extensions, self.image_alignment, self.number_of_columns, self.show_details, self.uid)
 
     def fetch_files(self, directory, file_extensions):
-        """Returns a list of all files and filenames.
+        """Returns a list of all files.
 
-        Returns a list of files and a list of filenames to be used by create_gallery().
+        Returns a list of files to be used by create_gallery().
+        
+        Args:
+            directory (str): A str() of the path to the folder containing the gallery images, for example, "assets".
+            file_extensions (tuple): A tuple() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
         
         Returns:
             all_files (list): A list of files.
@@ -49,10 +55,14 @@ class Gallery(Library):
         Creates a gallery using columns out of streamlit widgets.
 
         Args:
+            directory (str): A str() of the path to the folder containing the gallery images, for example, "assets".
+            file_extensions (tuple): A tuple() containing strings of the file extensions to include in the gallery, default is (".png", ".jpg", ".jpeg").
+            image_alignment (str): A str() with the CSS keyword used to align the images and details columns.
             number_of_columns (int): An int() indicating the number of columns to create.
             show_details (bool): A bool() that when set to True allows the creation of libraries, default is False to create a gallery.
+            uid (str): A str() containing a unique identifier allowing you to create multiple libraries on the same page containing the same images.
         
         Returns:
-            library_container (st.container): A streamlit widget containing the library.
+            library_gallery_container (st.container): A streamlit widget containing the gallery.
         """
         return super().create_library(directory, file_extensions, image_alignment, number_of_columns, show_details, uid)

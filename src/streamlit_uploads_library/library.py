@@ -39,9 +39,13 @@ class Library():
         self.library = self.create_library(self.directory, self.file_extensions, self.image_alignment, self.number_of_columns, self.show_details, self.uid)
 
     def fetch_files(self, directory, file_extensions):
-        """Returns a list of all files and filenames.
+        """Returns a list of all files.
 
-        Returns a list of files and a list of filenames to be used by create_library().
+        Returns a list of files to be used by create_library().
+
+        Args:
+            directory (str): A str() of the path to the folder containing the library images, for example, "assets".
+            file_extensions (tuple): A tuple() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
         
         Returns:
             all_files (list): A list of files.
@@ -83,14 +87,18 @@ class Library():
         Creates a library using columns out of streamlit widgets.
 
         Args:
-            number_of_columns (int): An int() indicating the number of columns to create.
-            show_details (bool): A bool() that when set to False allows the creation of galleries, default is True to create a library.
+            directory (str): A str() of the path to the folder containing the library images, for example, "assets".
+            file_extensions (tuple): A tuple() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
+            image_alignment (str): A str() with the CSS keyword used to align the images and details columns.
+            number_of_columns (int): An int() defining the number of required columns, default is 5.
+            show_details (bool): A bool() to show or hide the file and edit details, False hides them, default is True to show them.
+            uid (str): A str() containing a unique identifier allowing you to create multiple libraries on the same page containing the same images.
         
         Returns:
-            library_container (st.container): A streamlit widget containing the library.
+            library_gallery_container (st.container): A streamlit widget containing the library.
         """
-        library_container = st.container()
-        with library_container:
+        library_gallery_container = st.container()
+        with library_gallery_container:
             # To be able to display the images, details and buttons all in one row and aligned 
             # correctly so that images of different sizes don't affect the alignment of the details 
             # and buttons we need do some minor maths and keep track of multiple index values. 
@@ -157,4 +165,4 @@ class Library():
                         col_idx = 0
                         library_rows_idx += 1
                     filename_idx += 1
-        return library_container
+        return library_gallery_container
