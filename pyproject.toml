@@ -9,7 +9,10 @@ authors = [
   { name="Michael Haslam", email="hreikin@gmail.com" },
 ]
 description = "A wrapper around st.file_uploader that provides a library and gallery options."
-dependencies = ["streamlit >= 1.19.0"]
+dependencies = [
+  "streamlit >= 1.19.0",
+  "opsdroid-get-image-size >= 0.2.2"
+]
 readme = {file = "README.md", content-type = "text/markdown"}
 license = {file = "LICENSE"}
 requires-python = ">=3.7"
