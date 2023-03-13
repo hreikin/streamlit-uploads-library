@@ -6,8 +6,7 @@
 
 A simple gallery for use in Streamlit projects. Check out the demo using the Streamlit Cloud button above. 
 This package provides a simple wrapper around `st.file_uploader` with a save function included and 
-also provides library and gallery views for use in Streamlit projects. The file uploader can be seen in 
-the sidebar and the library and gallery views are shown down below. 
+also provides library and gallery views for use in Streamlit projects.
 
 ## Installation
 
