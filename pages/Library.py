@@ -197,12 +197,12 @@ class from `streamlit_uploads_library.library` and then instantiate the class wi
 `directory` variable. Other options can be configured by passing in different variables when 
 instantiating the class.
 
-- directory (required): A str() of the path to the folder containing the library images, for example, "assets".
-- file_extensions (optional): A tuple() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
-- image_alignment (optional): A str() with the CSS keyword used to align the images and details columns.
-- number_of_columns (optional): An int() defining the number of required columns, default is 5.
-- show_details (optional): A bool() to show or hide the file and edit details, False hides them, default is True to show them.
-- uid (optional): A str() containing a unique identifier allowing you to create multiple libraries on the same page containing the same images.
+- `directory` (required): A str() of the path to the folder containing the library images, for example, "assets".
+- `file_extensions` (optional): A tuple() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
+- `image_alignment` (optional): A str() with the CSS keyword used to align the images and details columns.
+- `number_of_columns` (optional): An int() defining the number of required columns, default is 5.
+- `show_details` (optional): A bool() to show or hide the file and edit details, False hides them, default is True to show them.
+- `uid` (optional): A str() containing a unique identifier allowing you to create multiple libraries on the same page containing the same images.
 """
 )
 st.code(
