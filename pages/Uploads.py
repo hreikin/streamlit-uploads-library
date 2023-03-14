@@ -116,19 +116,46 @@ types. It is not required to use this and you can easily replace it with your ow
 as a convenience so you dont need to create the code yourself or replicate it across multiple 
 projects.
 
-- `save_location` (required): A `str()` of the path to the folder you want to save files in, for example, `"assets"`.
+- `save_location` (str): A str() of the path to the folder you wish to save images to, for example, "assets".
+- `expander` (bool): A bool() used to set the initial state of the expander, only used when using the "expander" widget_type.
+- `file_extensions` (list): A list() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
+- `info_msg` (str): A str() used to set an info message above the uploader, default is "Upload new files here.".
+- `header` (str): A str() used to set the header of the "expander" or the header in the "container" type widget, default is "Upload Files", can be set to None to not display it.
+- `uid` (str): A str() containing a unique identifier allowing you to create multiple file uploaders on the same page.
+- `upload_label` (str): A str() used to set the label of the file uploader widget, default is "Upload Files", can be set to None to display an empty string instead.
+- `widget_type` (str): A str() defining the type of widget to use to display the file uploader, options are "container" or "expander", default is "container".
 """
 )
-st.code(
+st.markdown(
 """
-import streamlit as st
-from streamlit_uploads_library.uploads import UploadFiles
-
-st.set_page_config(page_title="Streamlit Uploads Library")
-default_uploader = UploadFiles(save_location="assets")
+The default uploader provides a container with a header, info message and file uploader and 
+can be created just by passing in a `save_location`. The second uploader provides an expander 
+with an optional label, info message and file uploader and can be created just by passing in a 
+`save_location` and the `widget_type`.
 """
 )
-default_uploader = UploadFiles(save_location="assets")
+col1, col2 = st.columns(2)
+with col1:
+    st.code(
+        """
+        import streamlit as st
+        from streamlit_uploads_library.uploads import UploadFiles
 
+        st.set_page_config(page_title="Streamlit Uploads Library")
+        default_uploader = UploadFiles(save_location="assets")
+        """
+    )
+    default_uploader = UploadFiles(save_location="assets")
+with col2:
+    st.code(
+        """
+        import streamlit as st
+        from streamlit_uploads_library.uploads import UploadFiles
+
+        st.set_page_config(page_title="Streamlit Uploads Library")
+        expander = UploadFiles(save_location="assets", uid="expander-type", widget_type="expander")
+        """
+    )
+    expander = UploadFiles(save_location="assets", uid="expander-type", widget_type="expander")
 with st.expander(label="**Source Code**", expanded=True):
     st.code(body=source_code)
