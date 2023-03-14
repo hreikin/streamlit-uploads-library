@@ -8,7 +8,7 @@ version = "0.1.1"
 authors = [
   { name="Michael Haslam", email="hreikin@gmail.com" },
 ]
-description = "A wrapper around st.file_uploader that provides a library and gallery options."
+description = "A simple library or gallery for Streamlit made from widgets."
 dependencies = [
   "streamlit >= 1.19.0",
   "opsdroid-get-image-size >= 0.2.2"
