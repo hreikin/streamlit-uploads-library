@@ -186,7 +186,36 @@ class Library():
                     filename_idx += 1
         return library_gallery_container
 '''
+with st.sidebar:
+    st.info("Welcome to the `streamlit-uploads-library` example app.")
 
+st.header("Library")
+st.markdown(
+"""
+A simple library for use in Streamlit projects. Using the library is simple, import the `Library` 
+class from `streamlit_uploads_library.library` and then instantiate the class with the required 
+`directory` variable. Other options can be configured by passing in different variables when 
+instantiating the class.
+
+- directory (required): A str() of the path to the folder containing the library images, for example, "assets".
+- file_extensions (optional): A tuple() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
+- image_alignment (optional): A str() with the CSS keyword used to align the images and details columns.
+- number_of_columns (optional): An int() defining the number of required columns, default is 5.
+- show_details (optional): A bool() to show or hide the file and edit details, False hides them, default is True to show them.
+- uid (optional): A str() containing a unique identifier allowing you to create multiple libraries on the same page containing the same images.
+"""
+)
+st.code(
+"""
+import streamlit as st
+from streamlit_uploads_library.library import Library
+
+st.set_page_config(page_title="Streamlit Uploads Library")
+library = Library(directory="assets/landscape/")
+library_columns = Library(directory="assets/portrait/", number_of_columns=4, uid="library-columns")
+library_mixed = Library(directory="assets/mixed/", uid="mixed-library")
+"""
+)
 library = Library(directory="assets/landscape/")
 library_columns = Library(directory="assets/portrait/", number_of_columns=4, uid="library-columns")
 library_mixed = Library(directory="assets/mixed/", uid="mixed-library")

@@ -116,14 +116,14 @@ types. It is not required to use this and you can easily replace it with your ow
 as a convenience so you dont need to create the code yourself or replicate it across multiple 
 projects.
 
-- `save_location` (str): A str() of the path to the folder you wish to save images to, for example, "assets".
-- `expander` (bool): A bool() used to set the initial state of the expander, only used when using the "expander" widget_type.
-- `file_extensions` (list): A list() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
-- `info_msg` (str): A str() used to set an info message above the uploader, default is "Upload new files here.".
-- `header` (str): A str() used to set the header of the "expander" or the header in the "container" type widget, default is "Upload Files", can be set to None to not display it.
-- `uid` (str): A str() containing a unique identifier allowing you to create multiple file uploaders on the same page.
-- `upload_label` (str): A str() used to set the label of the file uploader widget, default is "Upload Files", can be set to None to display an empty string instead.
-- `widget_type` (str): A str() defining the type of widget to use to display the file uploader, options are "container" or "expander", default is "container".
+- `save_location` (required): A str() of the path to the folder you wish to save images to, for example, "assets".
+- `expander` (optional): A bool() used to set the initial state of the expander, only used when using the "expander" widget_type.
+- `file_extensions` (optional): A list() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
+- `info_msg` (optional): A str() used to set an info message above the uploader, default is "Upload new files here.".
+- `header` (optional): A str() used to set the header of the "expander" or the header in the "container" type widget, default is "Upload Files", can be set to None to not display it.
+- `uid` (optional): A str() containing a unique identifier allowing you to create multiple file uploaders on the same page.
+- `upload_label` (optional): A str() used to set the label of the file uploader widget, default is "Upload Files", can be set to None to display an empty string instead.
+- `widget_type` (optional): A str() defining the type of widget to use to display the file uploader, options are "container" or "expander", default is "container".
 """
 )
 st.markdown(
