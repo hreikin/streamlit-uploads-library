@@ -23,12 +23,12 @@ when instantiating the class.
 
 ### Library View
 
-- `directory` (str): A str() of the path to the folder containing the library images, for example, "assets".
-- `file_extensions` (tuple): A tuple() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
-- `image_alignment` (str): A str() with the CSS keyword that is used to align the images and details columns.
-- `number_of_columns` (int): An int() defining the number of required columns, default is 5.
-- `show_details` (bool): A bool() to show or hide the file and edit details, False hides them, default is True to show them.
-- `uid` (str): A str() containing a unique identifier allowing you to create multiple libraries on the same page containing the same images.
+- `directory` (required): A str() of the path to the folder containing the library images, for example, "assets".
+- `file_extensions` (optional): A tuple() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
+- `image_alignment` (optional): A str() with the CSS keyword used to align the images and details columns.
+- `number_of_columns` (optional): An int() defining the number of required columns, default is 5.
+- `show_details` (optional): A bool() to show or hide the file and edit details, False hides them, default is True to show them.
+- `uid` (optional): A str() containing a unique identifier allowing you to create multiple libraries on the same page containing the same images.
 
 ```python
 import streamlit as st
@@ -42,12 +42,12 @@ library_mixed = Library(directory="assets/mixed/", uid="mixed-library")
 
 ### Gallery View
 
-- `directory` (str): A str() of the path to the folder containing the gallery images, for example, "assets".
-- `file_extensions` (tuple): A tuple() containing strings of the file extensions to include in the gallery, default is (".png", ".jpg", ".jpeg").
-- `image_alignment` (str): A str() with the CSS keyword that is used to align the images and details columns.
-- `number_of_columns` (int): An int() defining the number of required columns, default is 5.
-- `show_details` (bool): A bool() to show or hide the file and edit details, True shows them, default is False to hide them and create a gallery.
-- `uid` (str): A str() containing a unique identifier allowing you to create multiple galleries on the same page containing the same images.
+- `directory` (required): A str() of the path to the folder containing the gallery images, for example, "assets".
+- `file_extensions` (optional): A tuple() containing strings of the file extensions to include in the gallery, default is (".png", ".jpg", ".jpeg").
+- `image_alignment` (optional): A str() with the CSS keyword used to align the images and details columns.
+- `number_of_columns` (optional): An int() defining the number of required columns, default is 5.
+- `show_details` (optional): A bool() to show or hide the file and edit details, True shows them, default is False to hide them and create a gallery.
+- `uid` (optional): A str() containing a unique identifier allowing you to create multiple galleries on the same page containing the same images.
 
 ```python
 import streamlit as st
@@ -66,13 +66,14 @@ types. It is not required to use this and you can easily replace it with your ow
 as a convenience so you don't need to create the code yourself or replicate it across multiple 
 projects.
 
-- `save_location` (str): A str() of the path to the folder you wish to save images to, for example, "assets".
-- `expander` (bool): A bool() used to set the initial state of the expander, only used when using the "expander" widget_type.
-- `file_extensions` (list): A list() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
-- `info_msg` (str): A str() that is used to set an info message above the uploader, default is "Upload new files here.".
-- `label` (str): A str() used to set the label of the "expander" or the header in the "container" type widget, default is "Upload Files", can be set to None to not display it.
-- `upload_label` (str): A str() that is used to set the label of the file uploader widget, default is "Upload Files".
-- `widget_type` (str): A str() defining the type of widget to use to display the file uploader, options are "container" or "expander", default is "container".
+- `save_location` (required): A str() of the path to the folder you wish to save images to, for example, "assets".
+- `expander` (optional): A bool() used to set the initial state of the expander, only used when using the "expander" widget_type.
+- `file_extensions` (optional): A list() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
+- `info_msg` (optional): A str() used to set an info message above the uploader, default is "Upload new files here.".
+- `header` (optional): A str() used to set the header of the "expander" or the header in the "container" type widget, default is "Upload Files", can be set to None to not display it.
+- `uid` (optional): A str() containing a unique identifier allowing you to create multiple file uploaders on the same page.
+- `upload_label` (optional): A str() used to set the label of the file uploader widget, default is "Upload Files", can be set to None to display an empty string instead.
+- `widget_type` (optional): A str() defining the type of widget to use to display the file uploader, options are "container" or "expander", default is "container".
 
 ```python
 import streamlit as st
