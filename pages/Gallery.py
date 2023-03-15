@@ -1,5 +1,5 @@
 import streamlit as st
-from src.streamlit_uploads_library.gallery import Gallery
+from streamlit_uploads_library.gallery import Gallery
 
 # Configure page title, layout, menu items and links.
 st.set_page_config(
