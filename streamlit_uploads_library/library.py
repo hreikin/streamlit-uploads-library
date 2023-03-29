@@ -80,6 +80,35 @@ class Library():
         st.cache_resource.clear()
         st.experimental_rerun()
 
+    def create_details(_self, img, filename_idx, uid):
+        """Create the details section for each displayed image.
+
+        Creates a default details section for each image it is used on, can be overridden to create 
+        a custom details section with more information or other options available.
+
+        Args:
+            img (file): An image file object to create the details from.
+            filename_idx (int): An int() of the current "filename_idx" used to create a unique key for fields within the details section.
+            uid (str): A str() containing a unique identifier allowing you to create multiple libraries on the same page containing the same images.
+        """
+        try:
+            img_meta = get_image_size.get_image_metadata(img)
+            img_path = Path(img).resolve()
+            new_name = st.text_input(label="Name:", key=f"{img_path.stem}_{uid}_name_{filename_idx}", value=f"{img_path.stem}")
+            st.text_input(label="Type:", key=f"{img_path.stem}_{uid}_type_{filename_idx}", value=f"{img_path.suffix.strip('.').upper()}", disabled=True)
+            details_col1, details_col2 = st.columns(2)
+            del_check = st.checkbox(label="Delete ?", key=f"{img_path.stem}_{uid}_del_check_{filename_idx}", help="Permanently delete a file from the library.")
+            if del_check:
+                st.button(label="Delete", key=f"{img_path.stem}_{uid}_delete_button_{filename_idx}", type="secondary", use_container_width=True, on_click=_self.update_file, args=(img_path, new_name, del_check))
+            else:
+                st.button(label="Update", key=f"{img_path.stem}_{uid}_submit_button_{filename_idx}", type="primary", use_container_width=True, on_click=_self.update_file, args=(img_path, new_name, del_check))
+            with details_col1:
+                st.text_input(label="Width:", key=f"{img_path.stem}_{uid}_width_{filename_idx}", value=f"{img_meta.width}", disabled=True)
+            with details_col2:
+                st.text_input(label="Height:", key=f"{img_path.stem}_{uid}_height_{filename_idx}", value=f"{img_meta.height}", disabled=True)
+        except get_image_size.UnknownImageFormat:
+            width, height = -1, -1
+
     @st.cache_resource(experimental_allow_widgets=True, show_spinner="Refreshing library...")
     def create_library(_self, directory, file_extensions, image_alignment, number_of_columns, show_details, uid):
         """Creates a simple library with columns.
@@ -139,23 +168,7 @@ class Library():
                                 unsafe_allow_html=True
                             )
                         if show_details == True:
-                            try:
-                                img_meta = get_image_size.get_image_metadata(img)
-                                img_path = Path(img).resolve()
-                                new_name = st.text_input(label="Name:", key=f"{img_path.stem}_{uid}_name_{filename_idx}", value=f"{img_path.stem}")
-                                st.text_input(label="Type:", key=f"{img_path.stem}_{uid}_type_{filename_idx}", value=f"{img_path.suffix.strip('.').upper()}", disabled=True)
-                                details_col1, details_col2 = st.columns(2)
-                                del_check = st.checkbox(label="Delete ?", key=f"{img_path.stem}_{uid}_del_check_{filename_idx}", help="Permanently delete a file from the library.")
-                                if del_check:
-                                    st.button(label="Delete", key=f"{img_path.stem}_{uid}_delete_button_{filename_idx}", type="secondary", use_container_width=True, on_click=_self.update_file, args=(img_path, new_name, del_check))
-                                else:
-                                    st.button(label="Update", key=f"{img_path.stem}_{uid}_submit_button_{filename_idx}", type="primary", use_container_width=True, on_click=_self.update_file, args=(img_path, new_name, del_check))
-                                with details_col1:
-                                    st.text_input(label="Width:", key=f"{img_path.stem}_{uid}_width_{filename_idx}", value=f"{img_meta.width}", disabled=True)
-                                with details_col2:
-                                    st.text_input(label="Height:", key=f"{img_path.stem}_{uid}_height_{filename_idx}", value=f"{img_meta.height}", disabled=True)
-                            except get_image_size.UnknownImageFormat:
-                                width, height = -1, -1
+                            _self.create_details(img, filename_idx, uid)
                     # Keeps track of the current column, if we reach the `max_idx` we reset it 
                     # to 0 and increase the row index. This combined with the slicing should 
                     # ensure all images, details and buttons are in the correct columns.
