@@ -43,7 +43,7 @@ class UploadFiles():
         save_location (str): A str() of the path to the folder you wish to save images to, for example, "assets".
         expander (bool): A bool() used to set the initial state of the expander, only used when using the "expander" widget_type.
         file_extensions (list): A list() containing strings of the file extensions to include in the library, default is (".png", ".jpg", ".jpeg").
-        info_msg (str): A str() used to set an info message above the uploader, default is "Upload new files here.".
+        info_msg (str): A str() used to set an info message above the uploader, default is "Upload new files here.", can be set to None to not display it.
         header (str): A str() used to set the header of the "expander" or the header in the "container" type widget, default is "Upload Files", can be set to None to not display it.
         uid (str): A str() containing a unique identifier allowing you to create multiple file uploaders on the same page.
         upload_label (str): A str() used to set the label of the file uploader widget, default is "Upload Files", can be set to None to display an empty string instead.
@@ -83,7 +83,10 @@ class UploadFiles():
                 else:
                     self.gallery_header = st.markdown(f"**{header}**")
         with self.upload_options:
-            self.upload_options_msg = st.info(info_msg)
+            if info_msg == None:
+                pass
+            else:
+                self.upload_options_msg = st.info(info_msg)
             if upload_label == None:
                 upload_label = ""
             self.uploaded_files = st.file_uploader(label=upload_label, key=f"{uid}_upload_widget", accept_multiple_files=True, type=file_extensions, help="Upload a new file.")
