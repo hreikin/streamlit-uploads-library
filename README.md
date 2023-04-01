@@ -111,8 +111,8 @@ class CustomLibrary(Library):
 ## Caching
 
 Streamlit Uploads Library makes use of the `st.cache_resource` decorator so the library and gallery 
-on this page will load from the cache instead of reloading the images each time the app is run. You 
-will probably want to clear your cache after uploading new files to your app, the file uploader view 
+will load from the cache instead of reloading the images each time the app is run. You will 
+probably want to clear your cache after uploading new files to your app, the file uploader view 
 provided by this package takes care of that for you but if you use your own file uploader and save 
 function then to clear the cache you can use the `st.cache_resource.clear()` function provided by 
 Streamlit.
