@@ -90,7 +90,7 @@ A default set of basic file details is provided for each image within the librar
 inheritance this can be overridden to create your own file details section if you wish to include 
 more information or different options.
 
-```
+```python
 import streamlit as st
 from streamlit_uploads_library.library import Library
 
