@@ -4,7 +4,6 @@ from streamlit_uploads_library.uploads import UploadFiles
 # Configure page title, layout, menu items and links.
 st.set_page_config(
     page_title="Streamlit Uploads Library",
-    layout="wide",
     menu_items={
         "Get Help": "https://github.com/hreikin/streamlit-uploads-library",
         "Report a bug": "https://github.com/hreikin/streamlit-uploads-library/issues",
@@ -132,33 +131,34 @@ projects.
 st.markdown(
 """
 The default uploader provides a container with a header, info message and file uploader and 
-can be created just by passing in a `save_location`. The second uploader provides an expander 
+can be created just by passing in a `save_location`.
+"""
+)
+
+st.code(
+"""
+import streamlit as st
+from streamlit_uploads_library.uploads import UploadFiles
+
+st.set_page_config(page_title="Streamlit Uploads Library")
+default_uploader = UploadFiles(save_location="assets")
+"""
+    )
+st.markdown(
+"""
+The second uploader provides an expander 
 with an optional label, info message and file uploader and can be created just by passing in a 
 `save_location` and the `widget_type`.
 """
 )
-col1, col2 = st.columns(2)
-with col1:
-    st.code(
-        """
-        import streamlit as st
-        from streamlit_uploads_library.uploads import UploadFiles
+st.code(
+"""
+import streamlit as st
+from streamlit_uploads_library.uploads import UploadFiles
 
-        st.set_page_config(page_title="Streamlit Uploads Library")
-        default_uploader = UploadFiles(save_location="assets")
-        """
+st.set_page_config(page_title="Streamlit Uploads Library")
+expander = UploadFiles(save_location="assets", uid="expander-type", widget_type="expander")
+"""
     )
-    default_uploader = UploadFiles(save_location="assets")
-with col2:
-    st.code(
-        """
-        import streamlit as st
-        from streamlit_uploads_library.uploads import UploadFiles
-
-        st.set_page_config(page_title="Streamlit Uploads Library")
-        expander = UploadFiles(save_location="assets", uid="expander-type", widget_type="expander")
-        """
-    )
-    expander = UploadFiles(save_location="assets", uid="expander-type", widget_type="expander")
 with st.expander(label="**Source Code**", expanded=True):
     st.code(body=source_code)

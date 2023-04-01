@@ -6,7 +6,6 @@ from streamlit_uploads_library.library import Library
 # Configure page title, layout, menu items and links.
 st.set_page_config(
     page_title="Streamlit Uploads Library",
-    layout="wide",
     menu_items={
         "Get Help": "https://github.com/hreikin/streamlit-uploads-library",
         "Report a bug": "https://github.com/hreikin/streamlit-uploads-library/issues",
@@ -33,9 +32,9 @@ via pip:
 pip install streamlit-uploads-library
 ```
 
-The file uploader can be seen in the sidebar and the library and gallery views are shown down 
-below. Using any of the provided views is easy, just import the class and then instantiate it. 
-Multiple options are able to be configured with more info available on the relevant pages. Here 
+The default file uploader can be seen in the sidebar and the library and gallery views are shown 
+down below. Using any of the provided views is easy, just import the class and then instantiate 
+it. Multiple options are able to be configured with more info available on the relevant pages. Here 
 is a code example that shows how to create the default library, gallery and file uploader views. 
 """
 )
