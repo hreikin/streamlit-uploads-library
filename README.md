@@ -2,10 +2,14 @@
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hreikin-streamlit-uploads-library-home-ar6h9h.streamlit.app/)
 
-A simple uploads library and gallery for use in Streamlit projects. Check out the demo using the 
-Streamlit Cloud button above. This package provides a simple wrapper around `st.file_uploader` 
-with a save function included and also provides library and gallery views for use in Streamlit 
-projects.
+Streamlit Uploads Library is a simple, widget-based uploads library and gallery for use in 
+Streamlit projects. Check out the demo using the Streamlit Cloud button above.
+
+This package provides a simple wrapper around `st.file_uploader` with a save function included and 
+also provides library and gallery views for use in Streamlit projects. Using any of the views is 
+easy, import `streamlit_uploads_library` and then instantiate the class with the required 
+`directory` variable. Other options can be configured by passing in different variables when 
+instantiating the class. More information can be found in the Github repository.
 
 ## Installation
 
@@ -95,7 +99,7 @@ import streamlit as st
 from streamlit_uploads_library.library import Library
 
 class CustomLibrary(Library):
-    def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), image_alignment="center", number_of_columns=5, show_details=True, uid="custom"):
+    def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), image_alignment="end", number_of_columns=5, show_details=True, uid="custom"):
         self.directory = directory
         self.file_extensions = file_extensions
         self.image_alignment = image_alignment

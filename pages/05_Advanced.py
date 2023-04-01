@@ -33,7 +33,7 @@ import streamlit as st
 from streamlit_uploads_library.library import Library
 
 class CustomLibrary(Library):
-    def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), image_alignment="center", number_of_columns=5, show_details=True, uid="custom"):
+    def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), image_alignment="end", number_of_columns=5, show_details=True, uid="custom"):
         self.directory = directory
         self.file_extensions = file_extensions
         self.image_alignment = image_alignment
