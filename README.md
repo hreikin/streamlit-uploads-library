@@ -84,6 +84,30 @@ default_uploader = UploadFiles(save_location="assets")
 expander_uploader = UploadFiles(save_location="assets", widget_type="expander")
 ```
 
+## Custom File Details
+
+A default set of basic file details is provided for each image within the library. Using class 
+inheritance this can be overridden to create your own file details section if you wish to include 
+more information or different options.
+
+```
+import streamlit as st
+from streamlit_uploads_library.library import Library
+
+class CustomLibrary(Library):
+    def __init__(self, directory, file_extensions=(".png", ".jpg", ".jpeg"), image_alignment="center", number_of_columns=5, show_details=True, uid="custom"):
+        self.directory = directory
+        self.file_extensions = file_extensions
+        self.image_alignment = image_alignment
+        self.number_of_columns = number_of_columns
+        self.show_details = show_details
+        self.uid = uid
+        super(CustomLibrary, self).__init__(self.directory, self.file_extensions, self.image_alignment, self.number_of_columns, self.show_details, self.uid)
+
+    def create_details(_self, img, filename_idx, uid):
+        # Your details section code here
+```
+
 ## Caching
 
 Streamlit Uploads Library makes use of the `st.cache_resource` decorator so the library and gallery 
